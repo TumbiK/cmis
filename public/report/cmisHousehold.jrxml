@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="cmisHousehold" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fd9000ae-37ac-45f9-8acb-29b1454313ed">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="gvhSel" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="vilSel" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     cdist.`district_name`,
+     cta.`ta_name`,
+     cgvh.`gvh_name`,
+     cvil.`village_name`,
+     ubale.gvh,
+     ubale.`hh_number`,
+     ubale.name_of_hh_member,
+     ubale.`hh_size`,
+     ubale.`sex`,
+     ubale.`age`,
+     ubale.`ben_reg_date`,
+     ubale.comments,
+     ubale.village
+FROM
+     `code_district` cdist INNER JOIN `tbl_beneficiary_registration` ubale ON cdist.`Rec_Id` = ubale.`district`
+     INNER JOIN `code_ta` cta ON ubale.`ta` = cta.`Rec_ID`
+     INNER JOIN `code_gvh` cgvh ON ubale.`gvh` = cgvh.`Rec_id`
+     INNER JOIN `code_village` cvil ON ubale.`village` = cvil.`Rec_id`
+WHERE
+     ubale.gvh = $P{gvhSel} and head_h=1 and active=1
+ORDER BY ubale.village,ubale.hh_number]]>
+	</queryString>
+	<field name="district_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ta_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="gvh_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="village_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="gvh" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hh_number" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="name_of_hh_member" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hh_size" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sex" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="age" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ben_reg_date" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="comments" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="village" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<group name="Village" isStartNewPage="true">
+		<groupExpression><![CDATA[$F{village}]]></groupExpression>
+		<groupHeader>
+			<band height="24">
+				<staticText>
+					<reportElement mode="Opaque" x="5" y="2" width="52" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="bdc2852b-a82f-4264-970e-f6c29148a9ea"/>
+					<textElement textAlignment="Center">
+						<font size="12" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Number]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="90" y="2" width="79" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="ec25bc28-e839-43bf-b769-0ccb425e5efe"/>
+					<textElement textAlignment="Center">
+						<font size="12" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Name	]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="199" y="2" width="41" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="27422571-8ad2-4c84-ad62-d2676b9b9c7d"/>
+					<textElement textAlignment="Center">
+						<font size="12" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Size]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="298" y="2" width="47" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="4ca4e068-0f1e-4700-9537-ebdfcbe63a9b"/>
+					<textElement textAlignment="Center">
+						<font size="12" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Sex]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="254" y="2" width="33" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="2618a20b-4363-4439-bc60-6c5ef047033d"/>
+					<textElement textAlignment="Center">
+						<font size="12" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Age]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="464" y="2" width="71" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="c2d89242-d08d-4c77-9a48-bf46de8cd4aa"/>
+					<textElement textAlignment="Center">
+						<font size="12" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Reg Date]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="355" y="2" width="86" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="732e1d46-53b3-401b-bbc3-b17418cffeb2"/>
+					<textElement textAlignment="Center">
+						<font size="12" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Remarks]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="44">
+			<image>
+				<reportElement x="5" y="0" width="137" height="38" uuid="db5bd675-6afe-414e-a869-224ac1f4fa5a"/>
+				<imageExpression><![CDATA["C:\\xampp\\htdocs\\cmis\\public\\img\\usaid-logo.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="174" y="10" width="233" height="27" uuid="cc17ed85-9db7-418c-8170-16d53fc4e4f8"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[UBALE HOUSEHOLD LISTING]]></text>
+			</staticText>
+			<image>
+				<reportElement x="464" y="-5" width="77" height="49" uuid="a4e83874-90b5-4a8e-9fcc-a42a6fa6d6c1"/>
+				<imageExpression><![CDATA["C:\\xampp\\htdocs\\cmis\\public\\img\\gom.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="21">
+			<staticText>
+				<reportElement mode="Opaque" x="5" y="0" width="45" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="f8d517f4-7391-41c9-9390-ee7c9022d615"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[District]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="51" y="0" width="71" height="20" uuid="ffaa64f9-5a67-4fbc-8b7e-2803b569c542"/>
+				<textFieldExpression><![CDATA[$F{district_name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="277" y="1" width="27" height="17" forecolor="#666666" backcolor="#E6E6E6" uuid="5e7b6548-aed7-4223-b27d-89b3260b2df4"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[GVH]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="134" y="0" width="39" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="93b63e6d-5904-402e-a125-cf049602a3e4"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TA	]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="175" y="1" width="94" height="20" uuid="5e9419cb-25fb-4ae2-882c-97065adc752e"/>
+				<textFieldExpression><![CDATA[$F{ta_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="305" y="0" width="97" height="20" uuid="2c4eaa7f-24e3-407b-8d7d-a5138897bcdc"/>
+				<textFieldExpression><![CDATA[$F{gvh_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="455" y="-1" width="97" height="20" uuid="f6f235c7-d457-4d0c-83af-8f735b383629"/>
+				<textFieldExpression><![CDATA[$F{village_name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="408" y="-1" width="44" height="20" forecolor="#666666" uuid="a80fa90d-6e4b-4e16-9e22-fad2744219fd"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Village]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band/>
+	</columnHeader>
+	<detail>
+		<band height="18">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="0" width="555" height="1" uuid="2918ef24-e95c-4861-939e-acb5dde3ce0a"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="15" y="-2" width="30" height="20" uuid="f78da38f-9e15-4891-ac02-82a3411d2f43"/>
+				<textElement>
+					<font fontName="Calibri" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{hh_number}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="88" y="-2" width="104" height="20" uuid="1372b092-6d4d-4bb1-b795-aab4a4aab908"/>
+				<textElement>
+					<font fontName="Calibri" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{name_of_hh_member}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="204" y="-2" width="34" height="20" uuid="ff1bf574-76ad-43db-8338-9eb54547fc03"/>
+				<textElement>
+					<font fontName="Calibri" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{hh_size}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="257" y="-2" width="30" height="20" uuid="0c20df63-a9e1-42a8-be76-fdd841aec7a9"/>
+				<textElement>
+					<font fontName="Calibri" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{age}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy">
+				<reportElement x="463" y="-2" width="87" height="20" uuid="c5f3934d-3e4c-44c3-a633-3a4096edd6aa"/>
+				<textElement>
+					<font fontName="Calibri" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ben_reg_date}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="303" y="-2" width="42" height="20" uuid="9b232673-faeb-4997-858e-cb661605da9f"/>
+				<textElement>
+					<font fontName="Calibri"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{sex}=="0")?"UNDEFINED":($F{sex}=="1")?"Male":($F{sex}=="2")?"Female":($F{sex}=="Male")?"Male":($F{sex}=="Female")?"Female":"Unknown"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="354" y="-2" width="100" height="20" uuid="854b4088-933d-478b-973e-9d53ca802ad0"/>
+				<textElement>
+					<font fontName="Calibri"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{comments}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="c4621ec2-6d9c-44b9-8b9f-695658eb786b"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="1c2abde6-2ff5-45a0-bd74-f1496462a223"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="6f3ee069-eff5-44c8-b671-7e9a7e619fa6"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

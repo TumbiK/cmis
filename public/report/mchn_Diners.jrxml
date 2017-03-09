@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="mchn_verif" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="823c20cb-f489-4fc8-b306-7f1fbf012f0d">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="district" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fdp" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT * FROM
+(SELECT @counter := @counter +1 AS counter,tb.district,cp.partner_name,d.district_name,m.market_name,ud.market,g.gvh_name,t.ta_name, v.village_name,ud.hh_number,tb.name_of_hh_member,tb.Age,ep.rec_id,(Select name_of_HH_Member from tbl_beneficiary_registration tb where tb.district=ud.district and tb.village=ud.village and tb.hh_number=ud.hh_number and tb.head_h=1 limit 1)HH_Name
+FROM (select @counter:=0) AS initvar,`ubale_diner` ud JOIN tbl_beneficiary_registration tb ON (ud.village=tb.village and tb.hh_number=ud.hh_number and tb.hh_member_number=ud.hh_member_number)
+
+JOIN code_village v on(v.rec_id=ud.village)
+JOIN code_district d ON (ud.district = d.rec_id)
+JOIN code_gvh g ON (ud.gvh = g.rec_id)
+JOIN code_ta t ON (ud.ta = t.rec_id)
+Join code_partner cp ON (cp.partner_id=ud.partner)
+JOIN diner_markets m ON(m.rec_id=ud.market)
+JOIN ubale_epa ep ON(ep.rec_id=ud.epa)
+
+
+where tb.active=1 and ud.district=$P{district} and ud.date_registration > '2017-1-1' order by counter asc) as InnerTable]]>
+	</queryString>
+	<field name="counter" class="java.lang.Double"/>
+	<field name="district" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="partner_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="district_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="market_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="market" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="gvh_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ta_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="village_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hh_number" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="name_of_hh_member" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Age" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="rec_id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="HH_Name" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="53" splitType="Stretch">
+			<image>
+				<reportElement x="17" y="3" width="146" height="50" uuid="85e4a583-2396-4f85-8587-17f50a07f0c1"/>
+				<imageExpression><![CDATA["C:\\xampp\\htdocs\\cmis\\public\\img\\usaid-logo.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="216" y="20" width="404" height="21" uuid="47cb8f23-7460-4459-b9fc-9fe7945efea1"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Form  : DINER FAIRS ACKNOLEDGEMENT FORM]]></text>
+			</staticText>
+			<image>
+				<reportElement x="707" y="3" width="77" height="50" uuid="7bcff48a-17fc-4b38-b20f-86cacc9fa9f8"/>
+				<imageExpression><![CDATA["C:\\xampp\\htdocs\\cmis\\public\\img\\gom.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="40" splitType="Stretch">
+			<staticText>
+				<reportElement x="17" y="3" width="33" height="15" uuid="578bbea2-7ec9-441b-9f79-e1e940377a69"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PVO    ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="17" y="21" width="33" height="15" backcolor="#CCCCCC" uuid="2213bd8b-cda3-4e75-b536-89263dfb761e"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[GVH           :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="3" width="34" height="15" backcolor="#CCCCCC" uuid="de92c00b-cb67-413e-b9c0-17aef8f6ec00"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[T/A :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="197" y="21" width="82" height="15" backcolor="#CCCCCC" uuid="2be48754-a478-4314-9ffe-715ca37cc963"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Market Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="197" y="3" width="55" height="15" backcolor="#CCCCCC" uuid="c7470705-e231-4d96-b666-d7acc6cdceab"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[District:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="252" y="3" width="129" height="15" uuid="9821ed91-2678-4a16-9bac-a7de695a0859"/>
+				<textElement verticalAlignment="Bottom"/>
+				<textFieldExpression><![CDATA[$F{district_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="50" y="21" width="113" height="15" uuid="039c1c41-0991-40cc-bed3-94f48108c085"/>
+				<textElement verticalAlignment="Bottom"/>
+				<textFieldExpression><![CDATA[$F{gvh_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="414" y="3" width="132" height="15" uuid="e4f19111-0e5e-4ad9-bbe8-247dfbc7f1ed"/>
+				<textElement verticalAlignment="Bottom"/>
+				<textFieldExpression><![CDATA[$F{ta_name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="558" y="0" width="120" height="18" backcolor="#CCCCCC" uuid="ffcbe044-ef4f-408e-8032-83e8a73665e3"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Month of Distribution]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="558" y="21" width="220" height="15" uuid="9b9d2d92-b85e-453f-8662-ad1c8e6e1a9f"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Distribution Date  (DD/MM/YYYY):______________________]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="279" y="21" width="113" height="14" uuid="0bee1c5a-42f5-4985-a87a-6ed7a07ebc90"/>
+				<textElement verticalAlignment="Bottom"/>
+				<textFieldExpression><![CDATA[$F{market_name}]]></textFieldExpression>
+			</textField>
+			<textField pattern="MMMMM-yy">
+				<reportElement x="678" y="3" width="100" height="15" uuid="a067b5d1-e5b1-4efa-a9f9-049c1610abe7"/>
+				<textElement verticalAlignment="Bottom"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="50" y="3" width="113" height="15" uuid="bcf27bb9-3c85-4545-adcb-a0983a0b0329"/>
+				<textElement verticalAlignment="Bottom"/>
+				<textFieldExpression><![CDATA[$F{partner_name}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="17" splitType="Stretch">
+			<staticText>
+				<reportElement x="30" y="0" width="51" height="16" uuid="95340b5e-8c2c-456c-be31-cf035846c658"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[HH ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="324" y="0" width="173" height="16" uuid="d504b868-f67c-41f7-94e8-5614bd83824e"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Name Of Beneficiaries]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="0" width="28" height="16" uuid="ffa0fa53-d0c1-4c0a-afff-3c845368485c"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[S/No]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="497" y="0" width="48" height="16" uuid="38ff23da-918f-44b9-ac85-bfab5649e30b"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Age  ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="546" y="0" width="253" height="16" backcolor="#C2E0E0" uuid="3b4dbe64-1d26-4b51-9c22-b0d6f1d3bb18"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Bottom"/>
+				<text><![CDATA[THUMBPRINT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="81" y="0" width="92" height="16" uuid="b07f1f36-4e16-4313-8fb9-068fb4622ebb"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Village]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="173" y="0" width="150" height="16" uuid="983c27dd-0328-4b79-89ea-83c559176a43"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Name of HouseHold Head]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="32" splitType="Stretch">
+			<rectangle>
+				<reportElement x="546" y="0" width="135" height="32" backcolor="#FFFFFF" uuid="3774523a-9f76-4831-abf5-40b9954ccfeb"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="681" y="0" width="118" height="32" backcolor="#FFFFFF" uuid="c5c39460-7ba7-480b-909b-dd854ebd95cf"/>
+			</rectangle>
+			<textField>
+				<reportElement x="30" y="0" width="51" height="32" uuid="64a7d656-ecac-4cf7-a104-776a235f0158"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Bottom"/>
+				<textFieldExpression><![CDATA[$F{hh_number}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="323" y="0" width="174" height="32" uuid="11235091-f91d-40a9-886b-6d1d8d35bcde"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Bottom"/>
+				<textFieldExpression><![CDATA[$F{name_of_hh_member}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="497" y="0" width="49" height="32" uuid="2800825d-ed01-48fc-a395-4af05573fb3e"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Bottom"/>
+				<textFieldExpression><![CDATA[$F{Age}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="2" y="0" width="28" height="32" uuid="0c2fa4b5-04f2-4c05-93b3-cb25393647d6"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Bottom"/>
+				<textFieldExpression><![CDATA[$F{counter}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="681" y="0" width="118" height="32" uuid="0e46ee9f-d780-4cc9-9f24-e1b2e2d64df7">
+					<printWhenExpression><![CDATA[$F{counter}%2>0]]></printWhenExpression>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="546" y="0" width="135" height="32" uuid="16b2f332-bf39-47cf-9842-af9228731858">
+					<printWhenExpression><![CDATA[$F{counter}%2==0]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="1.0"/>
+				</graphicElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement x="681" y="0" width="118" height="32" uuid="1aab3e42-d162-40e0-bdc0-170d7e4ae025">
+					<printWhenExpression><![CDATA[$F{counter}%2>0]]></printWhenExpression>
+				</reportElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement x="546" y="0" width="135" height="32" uuid="1ed0e4c4-b8f0-4eed-b38a-1b72b1ee893e">
+					<printWhenExpression><![CDATA[$F{counter}%2==0]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="1.0"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="81" y="0" width="92" height="32" uuid="8eeaaf79-664d-4b9f-9a96-4d241f6e674c"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Bottom"/>
+				<textFieldExpression><![CDATA[$F{village_name}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="173" y="0" width="150" height="32" uuid="362471ed-e7d4-4e82-87b8-e9d353b9fd1c"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Bottom"/>
+				<textFieldExpression><![CDATA[$F{HH_Name}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="4" splitType="Stretch"/>
+	</summary>
+</jasperReport>

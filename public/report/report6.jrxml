@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report6" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d0a15849-2de6-4478-b6ee-eb7de19c37f7">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT * FROM
+(SELECT @counter := @counter +1 AS counter,RAND() as random,tf.district,d.district_name,g.gvh_name,t.ta_name, v.village_name,tr.hh_number,tr.name_of_hh_member,tr.Age
+FROM (select @counter:=0) AS initvar,`ubale_mchn_pregnant_mothers` tf JOIN tbl_beneficiary_registration tr ON (tf.village=tr.village and tf.hh_number=tr.hh_number and tr.hh_member_number=tf.hh_member_number)
+
+ JOIN code_village v on(v.rec_id=tf.village)
+JOIN code_district d ON (tr.district = d.rec_id)
+JOIN code_gvh g ON (tr.gvh = g.rec_id)
+JOIN code_ta t ON (tr.ta = t.rec_id)
+where tr.active=1 order by RAND()) as InnerTable where district=7]]>
+	</queryString>
+	<field name="counter" class="java.lang.Double"/>
+	<field name="random" class="java.lang.Double"/>
+	<field name="district" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="district_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="gvh_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ta_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="village_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hh_number" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="name_of_hh_member" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Age" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="78" y="2" width="100" height="20" uuid="ab391741-aaff-40d9-922a-96295bab7d17"/>
+				<text><![CDATA[hh_number]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="78" y="52" width="100" height="20" uuid="15e90137-fe58-4da3-ad09-2b42b52a768c"/>
+				<textFieldExpression><![CDATA[$F{hh_number}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="testReport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c363996b-e2b5-4e60-9511-98bf33ef7df9">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<subDataset name="dataset1" uuid="fadd455c-cb70-4dc0-a6b4-73b8317836c2"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     tb_ubale_hh_details.`rec_id` AS tb_ubale_hh_details_rec_id,
+     tb_ubale_hh_details.`dist` AS tb_ubale_hh_details_dist,
+     tb_ubale_hh_details.`ta` AS tb_ubale_hh_details_ta,
+     tb_ubale_hh_details.`gvh` AS tb_ubale_hh_details_gvh,
+     tb_ubale_hh_details.`village` AS tb_ubale_hh_details_village,
+     tb_ubale_hh_details.`hh_number` AS tb_ubale_hh_details_hh_number,
+     tb_ubale_hh_details.`hhh_name` AS tb_ubale_hh_details_hhh_name,
+     tb_ubale_hh_details.`hh_size` AS tb_ubale_hh_details_hh_size,
+     tb_ubale_hh_details.`hh_sex` AS tb_ubale_hh_details_hh_sex,
+     tb_ubale_hh_details.`hhh_age` AS tb_ubale_hh_details_hhh_age,
+     tb_ubale_hh_details.`hh_reg_date` AS tb_ubale_hh_details_hh_reg_date,
+     tb_ubale_hh_details.`comments` AS tb_ubale_hh_details_comments,
+     tb_ubale_hh_details.`exitDate` AS tb_ubale_hh_details_exitDate
+FROM
+     `tb_ubale_hh_details` tb_ubale_hh_details]]>
+	</queryString>
+	<field name="tb_ubale_hh_details_rec_id" class="java.lang.Integer"/>
+	<field name="tb_ubale_hh_details_dist" class="java.lang.Integer"/>
+	<field name="tb_ubale_hh_details_ta" class="java.lang.Integer"/>
+	<field name="tb_ubale_hh_details_gvh" class="java.lang.Integer"/>
+	<field name="tb_ubale_hh_details_village" class="java.lang.Integer"/>
+	<field name="tb_ubale_hh_details_hh_number" class="java.lang.String"/>
+	<field name="tb_ubale_hh_details_hhh_name" class="java.lang.String"/>
+	<field name="tb_ubale_hh_details_hh_size" class="java.lang.Integer"/>
+	<field name="tb_ubale_hh_details_hh_sex" class="java.lang.Boolean"/>
+	<field name="tb_ubale_hh_details_hhh_age" class="java.lang.Integer"/>
+	<field name="tb_ubale_hh_details_hh_reg_date" class="java.sql.Date"/>
+	<field name="tb_ubale_hh_details_comments" class="java.lang.String"/>
+	<group name="tb_ubale_hh_details_gvh">
+		<groupExpression><![CDATA[$F{tb_ubale_hh_details_gvh}]]></groupExpression>
+	</group>
+	<group name="tb_ubale_hh_details_village">
+		<groupExpression><![CDATA[$F{tb_ubale_hh_details_village}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="59" y="2" width="100" height="20" uuid="f491a29a-d67c-4aed-8358-78d95b075bda"/>
+				<text><![CDATA[tb_ubale_hh_details_hh_number]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="217" y="2" width="100" height="20" uuid="339cc9f9-06f6-478b-a01c-c70d886a0576"/>
+				<text><![CDATA[tb_ubale_hh_details_hhh_name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="384" y="2" width="100" height="20" uuid="d8b87837-1000-400a-8f7c-41bb650af263"/>
+				<text><![CDATA[tb_ubale_hh_details_hh_size]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<staticText>
+				<reportElement x="691" y="116" width="258" height="20" uuid="e15773a7-e229-48d5-84ac-a08d29e42193"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="59" y="55" width="100" height="20" uuid="3611fb5e-46f7-45d7-be00-aaa3f34450f6"/>
+				<textFieldExpression><![CDATA[$F{tb_ubale_hh_details_hh_number}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="217" y="60" width="100" height="20" uuid="c3c74c68-e2db-4ac2-9905-401711865e8e"/>
+				<textFieldExpression><![CDATA[$F{tb_ubale_hh_details_hhh_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="384" y="60" width="100" height="20" uuid="23bf6633-2398-4102-ba40-a3c56f41d094"/>
+				<textFieldExpression><![CDATA[$F{tb_ubale_hh_details_hh_size}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

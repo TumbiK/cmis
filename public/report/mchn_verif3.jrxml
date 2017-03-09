@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="mchn_verif" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="823c20cb-f489-4fc8-b306-7f1fbf012f0d">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="district" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="village" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="percent" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT * FROM
+(SELECT @counter := @counter +1 AS counter,RAND() as random,tf.district,d.district_name,tf.mc,g.gvh_name,t.ta_name,tr.village,tr.dob, v.village_name,tr.hh_number,tr.name_of_hh_member,tr.Age,(Select name_of_HH_Member from tbl_beneficiary_registration tb where tb.district=tf.district and tb.village=tr.village and tb.hh_number=tf.hh_number and tb.head_h=1 )HH_Name
+FROM (select @counter:=0) AS initvar,`ubale_mchn_child_ben` tf JOIN tbl_beneficiary_registration tr ON (tf.village=tr.village and tf.hh_number=tr.hh_number and tr.hh_member_number=tf.hh_member_number)
+
+ JOIN code_village v on(v.rec_id=tf.village)
+JOIN code_district d ON (tr.district = d.rec_id)
+JOIN code_gvh g ON (tr.gvh = g.rec_id)
+JOIN code_ta t ON (tr.ta = t.rec_id)
+
+where tr.active=1 and tf.district=$P{district} and tf.village=$P{village} order by RAND()) as InnerTable where random < $P{percent}/100]]>
+	</queryString>
+	<field name="counter" class="java.lang.Double"/>
+	<field name="random" class="java.lang.Double"/>
+	<field name="district" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="district_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="mc" class="java.lang.String">
+		<fieldDescription><![CDATA[mother or care giver]]></fieldDescription>
+	</field>
+	<field name="gvh_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ta_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="village" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dob" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="village_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hh_number" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="name_of_hh_member" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Age" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="HH_Name" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="53" splitType="Stretch">
+			<image>
+				<reportElement x="17" y="3" width="146" height="50" uuid="85e4a583-2396-4f85-8587-17f50a07f0c1"/>
+				<imageExpression><![CDATA["C:\\xampp\\htdocs\\cmis\\public\\img\\usaid-logo.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="252" y="20" width="304" height="21" uuid="47cb8f23-7460-4459-b9fc-9fe7945efea1"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Form 052: Child (0-23 months) Beneficiary Verification form]]></text>
+			</staticText>
+			<image>
+				<reportElement x="707" y="3" width="77" height="50" uuid="7bcff48a-17fc-4b38-b20f-86cacc9fa9f8"/>
+				<imageExpression><![CDATA["C:\\xampp\\htdocs\\cmis\\public\\img\\gom.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="66" splitType="Stretch">
+			<staticText>
+				<reportElement x="17" y="3" width="185" height="26" uuid="578bbea2-7ec9-441b-9f79-e1e940377a69"/>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[PVO     :________________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="17" y="29" width="56" height="15" uuid="2213bd8b-cda3-4e75-b536-89263dfb761e"/>
+				<text><![CDATA[GVH           :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="579" y="3" width="46" height="15" uuid="de92c00b-cb67-413e-b9c0-17aef8f6ec00"/>
+				<text><![CDATA[T/A :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="543" y="50" width="264" height="15" uuid="f3c23aa2-47e0-49ab-8250-5499b7c8a97c"/>
+				<text><![CDATA[Date of Verification: _ _ / _ _ / 201_ _ [DD/MM/YYYY]]]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="368" y="18" width="85" height="15" uuid="2be48754-a478-4314-9ffe-715ca37cc963"/>
+				<text><![CDATA[Name of Village:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="17" y="50" width="328" height="16" uuid="3350f265-7631-4059-ba31-5b7e56efb572"/>
+				<text><![CDATA[Verified by (Name & Signature):____________________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="368" y="3" width="85" height="15" uuid="c7470705-e231-4d96-b666-d7acc6cdceab"/>
+				<text><![CDATA[District:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="453" y="3" width="103" height="15" uuid="9821ed91-2678-4a16-9bac-a7de695a0859"/>
+				<textFieldExpression><![CDATA[$F{district_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="73" y="29" width="100" height="15" uuid="039c1c41-0991-40cc-bed3-94f48108c085"/>
+				<textFieldExpression><![CDATA[$F{gvh_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="453" y="18" width="103" height="15" uuid="bdd9b74f-cdc9-419a-ab3b-e0933ab8c2e1"/>
+				<textFieldExpression><![CDATA[$F{village_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="625" y="3" width="100" height="15" uuid="e4f19111-0e5e-4ad9-bbe8-247dfbc7f1ed"/>
+				<textFieldExpression><![CDATA[$F{ta_name}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="33" splitType="Stretch">
+			<staticText>
+				<reportElement x="30" y="0" width="43" height="33" uuid="95340b5e-8c2c-456c-be31-cf035846c658"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[HH ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="511" y="0" width="67" height="33" backcolor="#C2E0E0" uuid="0e506ad0-205f-4485-ae3b-2011d1a6a9d3"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Eligibility]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="73" y="0" width="129" height="33" uuid="983c27dd-0328-4b79-89ea-83c559176a43"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Name of Mother/Caregiver]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="262" y="0" width="126" height="33" uuid="d504b868-f67c-41f7-94e8-5614bd83824e"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Name Of Child]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="0" width="28" height="33" uuid="ffa0fa53-d0c1-4c0a-afff-3c845368485c"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[S/No]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="463" y="0" width="48" height="33" uuid="38ff23da-918f-44b9-ac85-bfab5649e30b"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Age  in Months]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="388" y="0" width="75" height="33" uuid="ed36bcc9-3adc-47ca-b81f-048c7d50dd49"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Date of Birth      [DD/MM/YYYY]]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="657" y="0" width="142" height="33" backcolor="#C2E0E0" uuid="b648dc84-b993-4d1c-8090-0eff56eac595"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Reasons for Status Change]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="578" y="0" width="79" height="33" backcolor="#C2E0E0" uuid="fa4a266e-ed80-4a9d-908a-f87c113f51c3"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Date of Status Change    [DD/MM/YYYY]]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="202" y="0" width="60" height="33" uuid="845c0393-36f6-40a6-a6e0-93c934835188"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[mother/care giver]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="30" y="0" width="43" height="20" uuid="64a7d656-ecac-4cf7-a104-776a235f0158"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Bottom"/>
+				<textFieldExpression><![CDATA[$F{hh_number}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="262" y="0" width="126" height="20" uuid="11235091-f91d-40a9-886b-6d1d8d35bcde"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Bottom"/>
+				<textFieldExpression><![CDATA[$F{name_of_hh_member}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="463" y="0" width="49" height="20" uuid="2800825d-ed01-48fc-a395-4af05573fb3e"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Bottom"/>
+				<textFieldExpression><![CDATA[$F{Age}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="578" y="0" width="79" height="20" uuid="86ba25e9-9eb3-45e5-b097-a59c1323adda"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[ _ _ / _ _ / _ _ _ _]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="657" y="0" width="142" height="20" uuid="3b4dbe64-1d26-4b51-9c22-b0d6f1d3bb18"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="511" y="0" width="67" height="20" uuid="06d1c13f-7db4-4e7c-842e-3d95bf5fbc8e"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[    Y       N]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="73" y="0" width="129" height="20" uuid="362471ed-e7d4-4e82-87b8-e9d353b9fd1c"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Bottom"/>
+				<textFieldExpression><![CDATA[$F{HH_Name}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="2" y="0" width="28" height="20" uuid="0c2fa4b5-04f2-4c05-93b3-cb25393647d6"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Bottom"/>
+				<textFieldExpression><![CDATA[$F{counter}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yy">
+				<reportElement x="388" y="0" width="75" height="20" uuid="6112aef9-2bdc-46af-b3b3-9215243bdcad"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Bottom"/>
+				<textFieldExpression><![CDATA[$F{dob}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="202" y="0" width="60" height="20" uuid="2bae91f2-93c7-4b43-86ce-0bbf358d8546"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{mc}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="69" splitType="Stretch">
+			<staticText>
+				<reportElement x="10" y="10" width="204" height="20" uuid="9c8f77aa-7ddb-45b3-be9c-e23e1c5f3146"/>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[Reviewed By:_______________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="265" y="10" width="204" height="20" uuid="3cafeba6-dbb0-4529-aeb6-b809d02ff4e8"/>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[Title:________________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="543" y="10" width="235" height="20" uuid="398a9788-10e6-42e4-86ec-23682b80cb47"/>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[Signature/Date:________________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="49" width="204" height="20" uuid="cc330c8d-7a85-4e56-9a82-e977fc20fa33"/>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[Approved By:_______________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="265" y="49" width="204" height="20" uuid="04791f44-cc5b-4a44-a57a-8f54c2954a4d"/>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[Title:________________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="543" y="49" width="235" height="20" uuid="16384fc0-9657-417d-b3fc-3529d09a04f4"/>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[Signature/Date:________________________]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="20" splitType="Stretch"/>
+	</summary>
+</jasperReport>

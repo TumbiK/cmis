@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="mchn_verif" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="823c20cb-f489-4fc8-b306-7f1fbf012f0d">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="53" splitType="Stretch">
+			<image>
+				<reportElement x="17" y="3" width="146" height="50" uuid="85e4a583-2396-4f85-8587-17f50a07f0c1"/>
+				<imageExpression><![CDATA["C:\\xampp\\htdocs\\cmis\\public\\img\\usaid-logo.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="252" y="20" width="389" height="21" uuid="47cb8f23-7460-4459-b9fc-9fe7945efea1"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Form 055: UBALE  PREGNANT MOTHERSFOOD ACKNOLEDGEMENT FORM]]></text>
+			</staticText>
+			<image>
+				<reportElement x="707" y="3" width="77" height="50" uuid="7bcff48a-17fc-4b38-b20f-86cacc9fa9f8"/>
+				<imageExpression><![CDATA["C:\\xampp\\htdocs\\cmis\\public\\img\\gom.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="52" splitType="Stretch">
+			<staticText>
+				<reportElement x="17" y="3" width="185" height="15" uuid="578bbea2-7ec9-441b-9f79-e1e940377a69"/>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[PVO     :________________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="17" y="29" width="56" height="15" uuid="2213bd8b-cda3-4e75-b536-89263dfb761e"/>
+				<text><![CDATA[GVH           :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="390" y="3" width="46" height="15" uuid="de92c00b-cb67-413e-b9c0-17aef8f6ec00"/>
+				<text><![CDATA[T/A :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="536" y="3" width="105" height="15" uuid="2be48754-a478-4314-9ffe-715ca37cc963"/>
+				<text><![CDATA[Month of Distribution:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="202" y="28" width="85" height="16" uuid="3350f265-7631-4059-ba31-5b7e56efb572"/>
+				<text><![CDATA[FDP Name:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="202" y="3" width="85" height="15" uuid="c7470705-e231-4d96-b666-d7acc6cdceab"/>
+				<text><![CDATA[District:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="390" y="29" width="46" height="15" uuid="bdd9b74f-cdc9-419a-ab3b-e0933ab8c2e1"/>
+				<textFieldExpression><![CDATA[FDP No:]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="536" y="29" width="147" height="15" uuid="0704b574-7ae8-458e-83cb-f6e742acaea9"/>
+				<text><![CDATA[Distribution Date (dd/mm/yy):]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="33" splitType="Stretch">
+			<staticText>
+				<reportElement x="41" y="0" width="63" height="33" uuid="95340b5e-8c2c-456c-be31-cf035846c658"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[HH ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="104" y="0" width="145" height="33" uuid="983c27dd-0328-4b79-89ea-83c559176a43"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Name of HouseHold Head]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="536" y="18" width="266" height="15" backcolor="#C2E0E0" uuid="fa4a266e-ed80-4a9d-908a-f87c113f51c3"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[THUMBPRINT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="249" y="0" width="164" height="33" uuid="d504b868-f67c-41f7-94e8-5614bd83824e"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Name Of Pregnant Woman]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="0" width="39" height="33" uuid="ffa0fa53-d0c1-4c0a-afff-3c845368485c"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[S/No]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="488" y="0" width="48" height="33" uuid="38ff23da-918f-44b9-ac85-bfab5649e30b"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Age  (In Years)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="413" y="0" width="75" height="33" uuid="ed36bcc9-3adc-47ca-b81f-048c7d50dd49"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Date of Birth      [DD/MM/YYYY]]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="536" y="1" width="266" height="17" backcolor="#C2E0E0" uuid="0e506ad0-205f-4485-ae3b-2011d1a6a9d3"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[CSB+ :3.125kgs                                         Vegtable Oil: 1L]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="53" splitType="Stretch">
+			<staticText>
+				<reportElement x="670" y="0" width="131" height="53" uuid="86ba25e9-9eb3-45e5-b097-a59c1323adda"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yy" isBlankWhenNull="true">
+				<reportElement x="413" y="0" width="74" height="53" uuid="6112aef9-2bdc-46af-b3b3-9215243bdcad"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Bottom"/>
+				<textFieldExpression><![CDATA[]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="536" y="0" width="134" height="53" uuid="8857b19f-de39-4185-b9aa-58f4800238e2"/>
+			</rectangle>
+			<line direction="BottomUp">
+				<reportElement x="537" y="0" width="133" height="53" uuid="4d630395-b4ff-44ea-8afa-824768008060"/>
+			</line>
+			<line>
+				<reportElement x="537" y="0" width="133" height="53" uuid="00e40918-60bd-4887-96f4-dd2a16983a8c"/>
+			</line>
+			<line>
+				<reportElement x="670" y="0" width="131" height="53" uuid="581f0c78-6bb3-4bdd-94b0-3f6805130b3f"/>
+			</line>
+			<line direction="BottomUp">
+				<reportElement x="670" y="0" width="131" height="53" uuid="9dcf8cb3-0fab-4513-924c-63f0353a829b"/>
+			</line>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="86" splitType="Stretch">
+			<staticText>
+				<reportElement x="10" y="10" width="426" height="20" uuid="9c8f77aa-7ddb-45b3-be9c-e23e1c5f3146"/>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[MANAGEMENT COMMITTEE/MEMBER:______________________________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="487" y="10" width="291" height="20" uuid="398a9788-10e6-42e4-86ec-23682b80cb47"/>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[Signature/Date:________________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="50" width="426" height="20" uuid="cc330c8d-7a85-4e56-9a82-e977fc20fa33"/>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[VERIFIED BY:__________________________________________________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="30" width="426" height="20" uuid="04791f44-cc5b-4a44-a57a-8f54c2954a4d"/>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[DISTRIBUTED BY:_______________________________________________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="488" y="49" width="290" height="20" uuid="16384fc0-9657-417d-b3fc-3529d09a04f4"/>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[Signature/Date:________________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="488" y="29" width="290" height="20" uuid="2cad8b7f-4969-4944-a4d1-fac77a12fec5"/>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[Signature/Date:________________________]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="20" splitType="Stretch"/>
+	</summary>
+</jasperReport>

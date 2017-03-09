@@ -1,0 +1,59 @@
+body {
+ margin : 0;
+ padding : 0 0 50px 0;
+ font-family : "Helvetica", "Arial";
+ font-size : 14px;
+ line-height : 1px;
+ cursor : default;
+ }
+
+ a {
+ color : #ef7c61;
+ }
+
+ .container {
+ width : 1024px;
+ position : relative;
+ margin : 0 auto;
+ }
+
+ .header, .footer {
+ background : #0B0B3B;
+
+ line-height : 20px;
+
+
+ height : 60px;
+ width : 100%;
+ color : #fff;
+ }
+
+.header h1, .header a {
+ display : inline-block;
+}
+
+.header h1 {
+ margin : 0;
+ font-weight : normal;
+ }
+
+.footer {
+position : absolute;
+bottom : 0;
+}
+
+ .content {
+ padding : 25px 0;
+ }
+
+ label, input {
+ clear : both;
+ float : left;
+ margin : 5px 0;
+ }
+
+
+ ul
+{
+    list-style-type: none;
+}

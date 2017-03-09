@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="HH_Listing ID Verification" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3e0eb482-b8c1-47d6-b156-d075309bf60d">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+     cdist.`district_name`,
+     cta.`ta_name`,
+     cgvh.`gvh_name`,
+     cvil.`village_name`,
+     ubale.gvh,
+     ubale.`hh_number`,
+     ubale.`name_of_hh_member`,
+     ubale.`hh_size`,
+     ubale.`sex`,
+     ubale.`age`,
+     ubale.comments,
+     ubale.village
+FROM
+     `code_district` cdist INNER JOIN `tbl_beneficiary_registration` ubale ON cdist.`Rec_Id` = ubale.`district`
+     INNER JOIN `code_ta` cta ON ubale.`ta` = cta.`Rec_ID`
+     INNER JOIN `code_gvh` cgvh ON ubale.`gvh` = cgvh.`Rec_id`
+     INNER JOIN `code_village` cvil ON ubale.`village` = cvil.`Rec_id`
+WHERE
+     hh_member_number IN(1,2) and ubale.gvh = 128
+ORDER BY ubale.village asc,ubale.hh_number asc
+]]>
+	</queryString>
+	<field name="district_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ta_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="gvh_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="village_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="gvh" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hh_number" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="name_of_hh_member" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hh_size" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sex" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="age" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="comments" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="village" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="58" splitType="Stretch">
+			<staticText>
+				<reportElement x="260" y="21" width="304" height="21" uuid="1b0614d9-9cbb-4fb6-8e41-c6ae0c18dd18"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[UBALE HOUSELD LISTING ID VERIFICATION]]></text>
+			</staticText>
+			<image>
+				<reportElement x="19" y="0" width="202" height="42" uuid="d14615cf-354e-444d-8bea-b0a6a49fd7ee"/>
+				<imageExpression><![CDATA["C:\\xampp\\htdocs\\cmis\\public\\img\\usaid-logo.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="28" splitType="Stretch">
+			<textField>
+				<reportElement x="90" y="0" width="100" height="20" uuid="bc6238cb-66f5-4f85-8492-dd7c528711e4"/>
+				<textFieldExpression><![CDATA[$F{district_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="277" y="0" width="100" height="20" uuid="3ec4a581-ce02-4073-86e6-2f326d4c81ef"/>
+				<textFieldExpression><![CDATA[$F{ta_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="464" y="0" width="100" height="20" uuid="1c9f21b4-33b1-4c9f-9a2d-14677b15a73c"/>
+				<textFieldExpression><![CDATA[$F{gvh_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="634" y="0" width="100" height="20" uuid="6ba17846-8b9e-4312-9896-81a552b0f987"/>
+				<textFieldExpression><![CDATA[$F{village_name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="90" height="20" uuid="8e455ff3-7c07-4379-b024-7c3354974ccd"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DISTRICT:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="221" y="0" width="56" height="20" uuid="c521cc7d-c46a-4bc7-a5b3-85929e8fa6b0"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="408" y="0" width="56" height="20" uuid="5159b138-c1df-4b19-ba41-3e698bbfdaf5"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[GVH:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="578" y="0" width="56" height="20" uuid="d04e8848-ba82-418a-b603-520181576d5c"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[VILLAGE:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="26" width="798" height="1" uuid="71404e39-ad99-4ccc-862d-a6fc4da9760f"/>
+			</line>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="29">
+			<staticText>
+				<reportElement x="0" y="2" width="77" height="20" uuid="7590d5e4-01b0-4f6d-b6ac-7dc509703f24"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[HH NUMBER]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="90" y="2" width="114" height="20" uuid="cec99c5b-9677-427b-9a60-08ab4fd3263d"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[NAME OF HH MEMBER]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="367" y="2" width="54" height="20" uuid="393d1760-28ec-42af-8d16-ac36dcbbb921"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[HH SIZE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="221" y="2" width="100" height="20" uuid="99feaad2-96b1-4682-a6fc-b9cc77faa911"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[SEX]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="321" y="2" width="46" height="20" uuid="784f5c60-5805-4c6f-80a6-e60e0f055170"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[AGE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="449" y="2" width="100" height="20" uuid="b927471a-dfae-49ca-9e20-73a3e68b7162"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date Of Birth]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="578" y="0" width="100" height="20" uuid="87075f26-b07c-4d23-ab1c-df5d1517480b"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Comments]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="26" width="798" height="1" uuid="6e0b8950-fb45-48fe-ab1b-1d851710e34c"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="1" width="77" height="20" uuid="e45ac342-9309-482c-b458-b5145e5f1953"/>
+				<textFieldExpression><![CDATA[$F{hh_number}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="90" y="1" width="114" height="20" uuid="d8cabd6f-7d7f-40de-8ee8-a2184fff62ad"/>
+				<textFieldExpression><![CDATA[$F{name_of_hh_member}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="221" y="1" width="100" height="20" uuid="0d418bdf-dbff-4016-83fb-b28e83d15599"/>
+				<textFieldExpression><![CDATA[$F{sex}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="20" width="798" height="1" uuid="36d3df5a-4b14-4acb-9fd2-da65c0a10c7e"/>
+			</line>
+			<rectangle>
+				<reportElement x="449" y="-2" width="129" height="22" uuid="f5f8ceaa-d35c-437e-a16d-8ec05f30c661"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="578" y="-2" width="220" height="22" uuid="e2c02ec9-170c-484c-b7e9-f4bcd8130b12"/>
+			</rectangle>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="21">
+			<textField>
+				<reportElement x="678" y="0" width="80" height="20" uuid="161decb7-b7c2-4078-a840-936b7083942f"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="758" y="0" width="40" height="20" uuid="b642288b-bd5a-4acc-954d-9f9332a30428"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

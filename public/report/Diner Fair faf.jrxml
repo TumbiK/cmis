@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report3" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c713974d-f520-4c3d-a514-3659bcb52e2e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="district" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="project" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fdp" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[Select * FROM (SELECT @counter := @counter +1 AS counter,d.district_name,t.ta_name,g.gvh_name,uf.fdp_name,uffa.FDP_Number,fp.project_type,uffa.project_number,v.village_name,uffa.district,bf.HH_Number,bf.Name_of_HH_Member,bf.sex,age,uffa.Number_days_work,uffa.status
+From (select @counter:=0) AS initvar, ubale_ffa_beneficiary_register uffa
+
+JOIN tbl_beneficiary_registration bf
+ON(uffa.district=bf.district and uffa.ta=bf.ta and uffa.gvh=bf.gvh and uffa.village=bf.village and uffa.hh_number = bf.hh_number and bf.hh_member_number=uffa.hh_member_number)
+
+JOIN code_district d ON (uffa.district = d.rec_id)
+JOIN code_gvh g ON (uffa.gvh = g.rec_id)
+JOIN code_ta t ON (uffa.ta = t.rec_id)
+JOIN ubale_ffa_project fp ON (uffa.district = fp.district and uffa.project_number=fp.project_number)
+JOIN ubale_fdp uf ON(uffa.district = uf.district and uffa.fdp_number=uf.fdp_id)
+
+JOIN code_village v ON(uffa.village = v.rec_id)) as InnerTable where Status=1 and district=$P{district} and project_number=$P{project} and fdp_number=$P{fdp} order by counter]]>
+	</queryString>
+	<field name="counter" class="java.lang.Double"/>
+	<field name="district_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ta_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="gvh_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fdp_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="FDP_Number" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="project_type" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="project_number" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="village_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="district" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="HH_Number" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Name_of_HH_Member" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sex" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="age" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Number_days_work" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="status" class="java.lang.Integer">
+		<fieldDescription><![CDATA[1 status is working]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="46" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="202" height="34" uuid="6016c8da-8b1b-4255-bcc2-c04b5d982e47"/>
+				<imageExpression><![CDATA["C:\\xampp\\htdocs\\cmis\\public\\img\\usaid-logo.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="690" y="0" width="112" height="46" uuid="31926853-3553-421c-915f-e6f9bf0a842d"/>
+				<imageExpression><![CDATA["C:\\xampp\\htdocs\\cmis\\public\\img\\gom.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="278" y="16" width="304" height="21" uuid="ab106f43-85c8-4aee-9390-2d5d278e5c4b"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Form : UBALE DINER FAIR FORM]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="60" splitType="Stretch">
+			<staticText>
+				<reportElement x="3" y="36" width="56" height="13" uuid="8639f383-77ab-4828-afc4-a453c42c51df"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[FDP Name:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="23" width="56" height="13" uuid="1bf2e987-049c-43c5-9d81-a47fea5c71ba"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[GVH:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="356" y="25" width="81" height="13" uuid="13cbf7b0-e93b-46ed-8192-a37e186c585e"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[T/A:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="184" y="39" width="67" height="13" uuid="ad2c2548-90e3-45a0-baf4-51fb47a2dd38"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Name of Asset:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="184" y="26" width="67" height="13" uuid="dee59be8-b833-4c35-8801-e8e77939674c"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[District:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="0" width="171" height="23" uuid="6243994a-8559-41da-b603-529de6913f6e"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[PVO: ________________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="356" y="38" width="81" height="13" uuid="ca0566d3-5f27-41cc-b76b-ec155b153127"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[FFA Project No:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="184" y="13" width="67" height="13" uuid="b0e1c731-8523-41b7-b50f-f7f5e4409387"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[FDP Number:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="59" y="23" width="115" height="13" uuid="21f7e1ae-ea4f-463c-80e5-90b25944f1a7"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{gvh_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="59" y="36" width="115" height="13" uuid="8fa1d851-5138-46ce-8ba7-2f89ebe7a162"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fdp_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="251" y="13" width="100" height="13" uuid="72b7e4bb-9ced-4396-9168-a0cce6eb5563"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FDP_Number}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="251" y="26" width="100" height="13" uuid="50b45181-4499-4ce1-a0d2-49f12937ed2b"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{district_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="251" y="39" width="100" height="13" uuid="56a2faab-6c34-4d73-88b0-a42fd33053d6"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{project_type}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="437" y="25" width="100" height="13" uuid="b759f94a-7ef2-48fb-982f-07108e211438"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ta_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="437" y="38" width="100" height="13" uuid="a877422f-7886-4d3b-aac5-f76ab494079a"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{project_number}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="497" y="0" width="305" height="22" uuid="76a779d6-2c3a-4317-a6b1-2dee1118646c"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Payment Period From _ _/_ _/_ _ TO  _ _/ _ _ /201__   [DD/MM/YYYY]]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="573" y="29" width="223" height="13" uuid="8fe69ab2-24ff-46cb-a11a-67e4e9628987"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[  	           20 Days Ration				]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="582" y="45" width="220" height="15" uuid="7a713dd2-c982-448c-99c1-afda19a98b1a"/>
+				<text><![CDATA[Pigeon Peas: 15 Kgs       Vegtable Oil :3.674]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="0" width="801" height="1" uuid="0476aacd-6470-4507-b61c-12de0338b474"/>
+			</line>
+			<line>
+				<reportElement x="0" y="1" width="1" height="59" uuid="d5565cf1-c49c-467b-b4fd-9759eff65819"/>
+			</line>
+			<line>
+				<reportElement x="802" y="0" width="1" height="60" uuid="85d18b93-cf8f-478f-821b-1b9490465034"/>
+			</line>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="56" height="20" uuid="70bbdd8a-b3a7-451e-945a-25c29ae16ea1"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[S/No (1)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="256" y="0" width="150" height="19" uuid="f4e60e70-e1da-4d78-a051-41c46006ae81"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Name of Beneficiary (4)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="56" y="0" width="100" height="20" uuid="685081c9-5f2e-4ffc-b128-9f94303fcc66"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Village Name  (2)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="156" y="0" width="100" height="20" uuid="5c6ec107-a619-4c6d-b6cc-843863fc603f"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[HouseHold ID (3)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="406" y="0" width="45" height="20" uuid="381b8159-3325-4d7d-babb-ca5fc1a3ecdb"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[sex (5)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="486" y="0" width="87" height="20" uuid="b9aae6dd-fce7-4834-b89d-677db1e0bd01"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ # days worked (7)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="573" y="0" width="229" height="19" uuid="3eb57434-e999-4752-ae8d-66a19df1325b"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[THUMB PRINT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="451" y="0" width="35" height="20" uuid="c82dccf1-90c8-4c23-8bad-67817e865ad2"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Age (6)	]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="35" splitType="Stretch">
+			<textField pattern="###0">
+				<reportElement x="0" y="-1" width="56" height="36" uuid="d743694b-8e7c-4633-bd67-0c217ab95237"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Bottom"/>
+				<textFieldExpression><![CDATA[$F{counter}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="573" y="0" width="114" height="34" backcolor="#FFFFFF" uuid="2c9bffc8-54a4-4b20-94d3-99837e4d4fb4"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="687" y="0" width="115" height="34" backcolor="#FFFFFF" uuid="26af6072-618e-4bdc-a3da-bef58d5f80ee"/>
+			</rectangle>
+			<line direction="BottomUp">
+				<reportElement x="687" y="0" width="115" height="34" uuid="9dd153ff-934c-402c-8579-c877e08c0e5c">
+					<printWhenExpression><![CDATA[$F{counter}%2==0]]></printWhenExpression>
+				</reportElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement x="573" y="0" width="114" height="34" uuid="801fe080-719a-4a77-8a4f-25b73a29d7d9">
+					<printWhenExpression><![CDATA[$F{counter}%2>0]]></printWhenExpression>
+				</reportElement>
+			</line>
+			<textField>
+				<reportElement x="156" y="0" width="100" height="35" uuid="9560d4df-f8c4-4a5e-865f-46a3bde06fc8"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Bottom"/>
+				<textFieldExpression><![CDATA[$F{HH_Number}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="406" y="-1" width="45" height="36" uuid="88ebacb0-b184-4d9c-b2de-12b60777738b"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Bottom"/>
+				<textFieldExpression><![CDATA[$F{sex}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="687" y="1" width="115" height="33" backcolor="#FFCCCC" uuid="59754567-0264-44d4-b9fb-0676e887765f">
+					<printWhenExpression><![CDATA[$F{counter}%2==0]]></printWhenExpression>
+				</reportElement>
+			</line>
+			<textField>
+				<reportElement x="56" y="0" width="100" height="35" uuid="41d3e505-6117-43b0-ab2c-2b689ec0c1cb"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Bottom"/>
+				<textFieldExpression><![CDATA[$F{village_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="256" y="-1" width="150" height="36" uuid="4fc8b981-1660-4586-b0d4-b4d798092105"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Bottom"/>
+				<textFieldExpression><![CDATA[$F{Name_of_HH_Member}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="451" y="1" width="35" height="33" uuid="a658d69b-21cd-4309-b5d6-c51fa6da178f"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Bottom"/>
+				<textFieldExpression><![CDATA[$F{age}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="486" y="1" width="87" height="33" uuid="ee597d1f-81c5-4b3e-8607-dab3b496d6cb"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Bottom"/>
+				<textFieldExpression><![CDATA[$F{Number_days_work}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="573" y="2" width="114" height="33" uuid="7df77fe3-8340-4e86-acd3-7ac359403fa0">
+					<printWhenExpression><![CDATA[$F{counter}%2>0]]></printWhenExpression>
+				</reportElement>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="67" splitType="Stretch">
+			<staticText>
+				<reportElement x="3" y="0" width="417" height="20" uuid="26cfb505-8e25-4b1d-99b4-473be99a8722"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[MANAGEMENT COMMITTEE/MEMBER:_________________________________________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="20" width="417" height="20" uuid="3b8a5f48-7494-47dc-b374-8ad946ea4dc2"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[DISTRIBUTED BY:__________________________________________________________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="42" width="417" height="20" uuid="412418da-28fa-4f3d-ad20-ea4490daa7d8"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[REVIEWED BY:_____________________________________________________________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="426" y="0" width="319" height="20" uuid="0e8190ce-9514-45bb-9fcb-74245d2025e4"/>
+				<text><![CDATA[signature:_____________________________________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="426" y="20" width="319" height="20" uuid="f2ab15eb-4442-4071-bdb6-9753ac23f64e"/>
+				<text><![CDATA[signature:_____________________________________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="426" y="40" width="319" height="20" uuid="24e3dcb3-ee60-4369-be67-76b0f432e8c4"/>
+				<text><![CDATA[signature:_____________________________________________]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

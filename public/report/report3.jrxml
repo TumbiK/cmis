@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report3" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c713974d-f520-4c3d-a514-3659bcb52e2e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[Select * FROM (SELECT @counter := @counter +1 AS counter,v.village_name,bf.HH_Number,bf.Name_of_HH_Member,bf.sex,age,uffa.Number_days_work,uffa.status
+From (select @counter:=0) AS initvar, ubale_ffa_beneficiary_register uffa JOIN tbl_beneficiary_registration bf
+ON(uffa.district=bf.district and uffa.ta=bf.ta and uffa.gvh=bf.gvh and uffa.village=bf.village and uffa.hh_number = bf.hh_number and bf.hh_member_number=uffa.hh_member_number)
+
+JOIN code_village v ON(uffa.village = v.rec_id)) as InnerTable where Status=0 order by counter]]>
+	</queryString>
+	<field name="counter" class="java.lang.Double"/>
+	<field name="village_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="HH_Number" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Name_of_HH_Member" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sex" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="age" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Number_days_work" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="status" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="46" splitType="Stretch">
+			<staticText>
+				<reportElement x="278" y="16" width="304" height="21" uuid="ab106f43-85c8-4aee-9390-2d5d278e5c4b"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Form 073: UBALE FFA FOOD DISTRIBUTION FORM]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement x="11" y="36" width="56" height="13" uuid="8639f383-77ab-4828-afc4-a453c42c51df"/>
+				<text><![CDATA[FDP Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="23" width="56" height="13" uuid="1bf2e987-049c-43c5-9d81-a47fea5c71ba"/>
+				<text><![CDATA[GVH]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="539" y="10" width="81" height="13" uuid="13cbf7b0-e93b-46ed-8192-a37e186c585e"/>
+				<text><![CDATA[T/A]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="298" y="36" width="67" height="13" uuid="ad2c2548-90e3-45a0-baf4-51fb47a2dd38"/>
+				<text><![CDATA[Name of Asset]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="298" y="23" width="67" height="13" uuid="dee59be8-b833-4c35-8801-e8e77939674c"/>
+				<text><![CDATA[District]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="10" width="56" height="13" uuid="6243994a-8559-41da-b603-529de6913f6e"/>
+				<text><![CDATA[PVO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="539" y="23" width="81" height="13" uuid="ca0566d3-5f27-41cc-b76b-ec155b153127"/>
+				<text><![CDATA[FFA Project No:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="298" y="10" width="67" height="13" uuid="b0e1c731-8523-41b7-b50f-f7f5e4409387"/>
+				<text><![CDATA[FDP Number]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="56" height="20" uuid="70bbdd8a-b3a7-451e-945a-25c29ae16ea1"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[S/No]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="256" y="0" width="164" height="19" uuid="f4e60e70-e1da-4d78-a051-41c46006ae81"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Name of Beneficiary]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="56" y="0" width="100" height="20" uuid="685081c9-5f2e-4ffc-b128-9f94303fcc66"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Village Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="156" y="0" width="100" height="20" uuid="5c6ec107-a619-4c6d-b6cc-843863fc603f"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[HouseHold ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="420" y="0" width="62" height="20" uuid="381b8159-3325-4d7d-babb-ca5fc1a3ecdb"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[sex]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="482" y="0" width="91" height="20" uuid="b9aae6dd-fce7-4834-b89d-677db1e0bd01"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Number_days_work]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="573" y="0" width="229" height="19" uuid="3eb57434-e999-4752-ae8d-66a19df1325b"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[THUMB PRINT]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="35" splitType="Stretch">
+			<textField pattern="###0">
+				<reportElement x="0" y="-1" width="56" height="36" uuid="d743694b-8e7c-4633-bd67-0c217ab95237"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Bottom"/>
+				<textFieldExpression><![CDATA[$F{counter}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="573" y="0" width="114" height="34" backcolor="#FFCCCC" uuid="2c9bffc8-54a4-4b20-94d3-99837e4d4fb4"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="687" y="0" width="115" height="34" backcolor="#FFCCCC" uuid="26af6072-618e-4bdc-a3da-bef58d5f80ee"/>
+			</rectangle>
+			<line direction="BottomUp">
+				<reportElement x="687" y="0" width="115" height="34" uuid="9dd153ff-934c-402c-8579-c877e08c0e5c">
+					<printWhenExpression><![CDATA[$F{counter}%2==0]]></printWhenExpression>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="573" y="1" width="114" height="33" uuid="7df77fe3-8340-4e86-acd3-7ac359403fa0">
+					<printWhenExpression><![CDATA[$F{counter}%2>0]]></printWhenExpression>
+				</reportElement>
+			</line>
+			<line direction="BottomUp">
+				<reportElement x="573" y="0" width="114" height="34" uuid="801fe080-719a-4a77-8a4f-25b73a29d7d9">
+					<printWhenExpression><![CDATA[$F{counter}%2>0]]></printWhenExpression>
+				</reportElement>
+			</line>
+			<textField>
+				<reportElement x="156" y="0" width="100" height="35" uuid="9560d4df-f8c4-4a5e-865f-46a3bde06fc8"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Bottom"/>
+				<textFieldExpression><![CDATA[$F{HH_Number}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="420" y="-1" width="62" height="36" uuid="88ebacb0-b184-4d9c-b2de-12b60777738b"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Bottom"/>
+				<textFieldExpression><![CDATA[$F{sex}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="482" y="-1" width="91" height="36" uuid="ee597d1f-81c5-4b3e-8607-dab3b496d6cb"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Bottom"/>
+				<textFieldExpression><![CDATA[$F{Number_days_work}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="687" y="1" width="115" height="33" backcolor="#FFCCCC" uuid="59754567-0264-44d4-b9fb-0676e887765f">
+					<printWhenExpression><![CDATA[$F{counter}%2==0]]></printWhenExpression>
+				</reportElement>
+			</line>
+			<textField>
+				<reportElement x="56" y="0" width="100" height="35" uuid="41d3e505-6117-43b0-ab2c-2b689ec0c1cb"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Bottom"/>
+				<textFieldExpression><![CDATA[$F{village_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="256" y="-1" width="164" height="36" uuid="4fc8b981-1660-4586-b0d4-b4d798092105"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Bottom"/>
+				<textFieldExpression><![CDATA[$F{Name_of_HH_Member}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="67" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

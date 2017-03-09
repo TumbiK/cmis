@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="CountHHGVH" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="899bfb7e-4ae0-486e-a388-aa2b06668082">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT d.district_name, t.ta_name,g.gvh_name,COUNT(HH_Number) FROM `tbl_beneficiary_registration` br JOIN code_district d on(d.rec_id=br.district) join code_ta t oN(t.rec_id=br.ta) join code_gvh g on(g.rec_id=br.gvh) JOIN code_village v on (v.rec_id=br.village) WHERE head_h=1 and br.district=11 group by br.gvh ]]>
+	</queryString>
+	<field name="district_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ta_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="gvh_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="COUNT(HH_Number)" class="java.lang.Long"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="138" height="20" uuid="2dd07768-c01c-49d9-8977-c36ba6c54ac1"/>
+				<text><![CDATA[district_name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="138" y="0" width="138" height="20" uuid="66ba62c5-63eb-45dd-8fa3-be9be92fbd7e"/>
+				<text><![CDATA[ta_name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="276" y="0" width="138" height="20" uuid="a2f5cacc-01b8-4beb-9a71-b65ae8c549ea"/>
+				<text><![CDATA[gvh_name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="414" y="0" width="138" height="20" uuid="39b98cdb-8bb1-4820-9a2a-bc8798132fc4"/>
+				<text><![CDATA[COUNT(HH_Number)]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="26" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="138" height="20" uuid="0e9abe8f-0b2a-4428-b313-0358ca98396f"/>
+				<textFieldExpression><![CDATA[$F{district_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="138" y="0" width="138" height="20" uuid="d0d3c668-5ab5-4020-8af3-76111f92ec9c"/>
+				<textFieldExpression><![CDATA[$F{ta_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="276" y="0" width="138" height="20" uuid="a61b1afb-c06f-4bf7-8410-077d196414dd"/>
+				<textFieldExpression><![CDATA[$F{gvh_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="414" y="0" width="138" height="20" uuid="aac9fc58-bab3-47d6-a194-e5d26b38b6f9"/>
+				<textFieldExpression><![CDATA[$F{COUNT(HH_Number)}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

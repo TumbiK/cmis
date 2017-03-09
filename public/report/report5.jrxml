@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report5" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e4968a2d-f889-4190-9f7f-2daaac7ce4b6">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="81"/>
+	<queryString>
+		<![CDATA[SELECT * FROM
+(SELECT @counter := @counter +1 AS counter,RAND() as random,tf.district,d.district_name,g.gvh_name,t.ta_name, v.village_name,tr.hh_number,tr.name_of_hh_member,tr.Age
+FROM (select @counter:=0) AS initvar,`ubale_mchn_pregnant_mothers` tf JOIN tbl_beneficiary_registration tr ON (tf.village=tr.village and tf.hh_number=tr.hh_number and tr.hh_member_number=tf.hh_member_number)
+
+ JOIN code_village v on(v.rec_id=tf.village)
+JOIN code_district d ON (tr.district = d.rec_id)
+JOIN code_gvh g ON (tr.gvh = g.rec_id)
+JOIN code_ta t ON (tr.ta = t.rec_id)
+where tr.active=1 order by RAND()) as InnerTable where district=7]]>
+	</queryString>
+	<field name="counter" class="java.lang.Double"/>
+	<field name="random" class="java.lang.Double"/>
+	<field name="district" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="district_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="gvh_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ta_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="village_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hh_number" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="name_of_hh_member" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Age" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="60" splitType="Stretch">
+			<image>
+				<reportElement x="27" y="13" width="137" height="38" uuid="317c0c1f-be0c-40ce-8749-ca61936a3cfa"/>
+				<imageExpression><![CDATA["C:\\xampp\\htdocs\\cmis\\public\\img\\usaid-logo.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="262" y="30" width="304" height="21" uuid="dd05162a-1e4a-4c27-80eb-65d021e23c9e"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Form 053: UBALE FFA BENEFICIARY VERIFICATION]]></text>
+			</staticText>
+			<image>
+				<reportElement x="717" y="13" width="77" height="43" uuid="dd1b8430-e759-4984-8e90-85ff56095d79"/>
+				<imageExpression><![CDATA["C:\\xampp\\htdocs\\cmis\\public\\img\\gom.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="78" splitType="Stretch">
+			<staticText>
+				<reportElement x="378" y="28" width="85" height="15" uuid="0768c62b-110d-4e9d-9f4d-131ea26d7f62"/>
+				<text><![CDATA[Name of Village:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="378" y="13" width="85" height="15" uuid="b2fab5c1-f77a-46a7-b45b-8afa9a987a82"/>
+				<text><![CDATA[District:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="517" y="54" width="264" height="15" uuid="e120d471-6ac0-4ca5-acd5-8656303c8b2d"/>
+				<text><![CDATA[Date of Verification: _ _ / _ _ / 201_ _ [DD/MM/YYYY]]]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="27" y="13" width="185" height="26" uuid="a9c7de7e-c0a1-4bfc-971f-2e8f79e9d6f9"/>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[PVO     :________________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="27" y="39" width="56" height="15" uuid="185182c7-096d-4145-813e-dc5191ea1627"/>
+				<text><![CDATA[GVH           :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="27" y="60" width="328" height="16" uuid="72ea683d-1a0a-443d-8c1a-05e461ca2deb"/>
+				<text><![CDATA[Verified by (Name & Signature):____________________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="585" y="13" width="46" height="15" uuid="5c307197-805d-4adb-982a-fac153d4472d"/>
+				<text><![CDATA[T/A :]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="643" y="0" width="158" height="33" backcolor="#C2E0E0" uuid="a34bba70-79e3-4921-8fe4-69aec2fa17ef"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Reasons for Status Change]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="429" y="0" width="48" height="33" uuid="977e3637-ff5d-4388-8f71-d8a215d89049"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Age  (In Years)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="94" y="0" width="134" height="33" uuid="8f6cac84-ab8b-4230-b5d7-2b811e51d88f"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Name of HouseHold Head]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="43" y="0" width="51" height="33" uuid="8192a254-6dc4-4a24-8e75-dacaf4be16a0"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[HH ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="354" y="0" width="75" height="33" uuid="39386217-0160-4084-92c8-7fc08ebf3d1b"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Date of Birth      [DD/MM/YYYY]]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="478" y="0" width="70" height="33" backcolor="#C2E0E0" uuid="8a70094f-b4dd-4966-9254-b38d36861599"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Eligibility]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="228" y="0" width="126" height="33" uuid="8cc4ff52-b188-46d5-9bf1-d34a826fa421"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Name Of Pregnant Woman]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="0" width="39" height="33" uuid="a66c08e0-d8f2-4fff-b830-6c2a324ef67a"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[S/No]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="548" y="0" width="95" height="33" backcolor="#C2E0E0" uuid="2917de5d-63d9-4e6e-a6af-a853628f10ee"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Date of Status Change    [DD/MM/YYYY]]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="94" y="37" width="134" height="20" uuid="c4a08a64-16d2-4336-866a-a6a0784535b6"/>
+				<textFieldExpression><![CDATA[$F{name_of_hh_member}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

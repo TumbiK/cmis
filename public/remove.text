@@ -1,0 +1,42 @@
+function doSearch(){
+	$('#dg').datagrid('load',		
+		{
+			hh_number:$('#addHH').val(),
+			code_dist: $('#district').val(),
+			code_ta: $('#taSel').val(),
+			code_gvh:$('#gvhSel').val(),
+			code_village:$('#vilSel').val()
+			
+		});
+
+}
+
+
+
+function removeItem(){
+	var row=$('#dg').datagrid('getSelected');
+	
+	if(row){
+		$.messager.confirm('Confirm','Are you sure you want to Delete this HouseHold?',function(r){
+			if(r){
+
+				$.ajax({
+					type:'get',
+					url:'destroy_hh',
+					data:'id='+row.id,
+					success:function(result){
+					if(result.success){
+						$('#dg').datagrid('reload');
+					}else{
+						$.messager.show({
+							title:'Error',
+							msg:result.errorMsg
+						});
+					}
+				}
+			});
+		
+	}
+});
+	}
+}

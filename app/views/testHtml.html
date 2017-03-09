@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Typical Entry Form</title>
+	<script language="JavaScript">
+		function calculateItem1(amount)
+		{
+			window.document.DataEntry.item1Ex.value=amount*window.document.DataEntry.item1.value
+			CalculateTotals()
+			
+		}
+
+		function calculateItem2(amount)
+		{
+			window.document.DataEntry.item2Ex.value=amount*window.document.DataEntry.item2.value
+			CalculateTotals()
+		}
+		function calculateItem3(amount)
+		{
+			window.document.DataEntry.item3Ex.value=amount*window.document.DataEntry.item3.value
+			CalculateTotals()
+		}
+		function CalculateTotals()
+		{
+			with(window.document.DataEntry)
+			{
+				//Calculate the Items subtotals
+				nTotalItems=parseInt(item1Ex.value)+parseInt(item2Ex.value)+parseInt(item3Ex.value)
+				//calculate the totals
+				NHandling=nTotalItems*5
+				NTax=nTotalItems*0.5
+				Ntotal=parseFloat(nTotalItems)+parseFloat(NHandling)+parseFloat(NTax)
+				//store the data
+				Handling.value=NHandling
+				Tax.value=NTax
+				Total.value=Ntotal
+			}
+		}
+
+			
+		
+
+	</script>
+
+</head>
+<body>
+	<CENTER><H1>TumbiKani Special Order Form</H1>	
+	<h3><MARQUEE width=50% LOOP=INFINITES>
+		Get in While the Items Last Tumbikani IT Shop is the Best in Town
+	</MARQUEE></h3></CENTER>
+	<FORM Name="DataEntry">
+		<TABLE width="100%" Border=1>
+			<TR>
+				<TH Width=30>Quantity</TH>
+				<TH>Description</TH>
+				<TH WIDTH=75>Unit Price</TH>
+				<TH WIDTH=75>Extended Price</TH>
+			</TR>
+			<TD>
+				<INPUT TYPE="TEXT" NAME= "item1" VALUE=0 SIZE=3 ONCHANGE= calculateItem1(24.99) />
+			 </TD>
+			<TD> Remove It Shaving Mug</TD>
+			<TD>MK24.99</TD>
+			<TD > MK <INPUT TYPE="text" NAME="item1Ex" VALUE="0" SIZE=7></TD>
+			<TR>
+			<TD>
+				<INPUT TYPE="TEXT" NAME= "item2" VALUE=0 SIZE=3 ONCHANGE= calculateItem2(36.99) />
+			 </TD>
+			<TD> Rampaging Willy Doli</TD>
+			<TD>MK36.99</TD>
+			<TD > MK <INPUT TYPE="text" NAME="item2Ex" VALUE="0" SIZE=7></TD>
+			</TR>
+			
+			<TR>
+			 	<TD> <INPUT TYPE="text" NAME="item3" VALUE=0 SIZE=3 ONCHANGE=calculateItem3(19.95) /></TD>
+			 	<TD>You Said it! Game</TD>
+				<TD>MK19.95</TD>
+				<TD > MK <INPUT TYPE="text" NAME="item3Ex" VALUE=0 SIZE=7></TD>
+			<TR/>
+			<TR>
+				<TD><INPUT TYPE="hidden"></TD>
+				<TD ALIGN=Right><H3>Shipping and Handling (@ MK5.00/ltem)<H3></TD>
+				<TD><INPUT TYPE="hidden"></TD>
+				<TD>MK <INPUT TYPE="text" NAME = "Handling" VALUE= 0 SIZE=7></TD>
+				</TR>
+				<TR>
+					<TD><INPUT TYPE="hidden"></TD>
+					<TD ALIGN=Right><H3>(Tax (@ 5%) </H3></TD> <TD><INPUT TYPE="hidden"></TD>
+					<TD>MK<INPUT TYPE="text" NAME = "Tax" VAIUE=0 SIZE=7></TD>
+				</TR>
+				<TR>
+					<TD><INPUT TYPE="hidden"></TD>
+					<TD ALIGN = Right><STRONG><H3>Total</H3></STRONG></TD> <TD><INPUT TYPE="hidden"></TD>
+					<TD>MK<INPUT TYPE="text" NAME = "Total" VALUE= "0" SIZE=7></TD>
+				</TR>
+					
+
+		</TABLE>
+	</FORM>
+
+</body>
+</html>

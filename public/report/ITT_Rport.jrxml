@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ITT_Rport" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="828" leftMargin="7" rightMargin="7" topMargin="20" bottomMargin="20" uuid="425915a5-517c-4075-a474-d16992122234">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<parameter name="indicatorNum" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\xampp\\htdocs\\cmis\\public\\report\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="partner" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select * from indicator_list where rec_id=36]]>
+	</queryString>
+	<field name="rec_id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="indicator_num" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="indicator_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="indicator_code" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="rec_id_purpose" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="65" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="340" height="21" forecolor="#006666" uuid="28af5a6e-da78-4bb9-abf7-fffb79d77796"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[UBALE Indicator Tracking Table - Quarterly Report ]]></text>
+			</staticText>
+			<image>
+				<reportElement x="666" y="-4" width="305" height="62" uuid="6b4371bd-2b2e-4783-9a90-20d829500065"/>
+				<imageExpression><![CDATA["C:\\xampp\\htdocs\\cmis\\public\\img\\CRS Logo.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="426" y="4" width="153" height="54" uuid="219a587d-b140-4a21-bf17-81aa0bf32a2b">
+					<printWhenExpression><![CDATA[$P{partner}=='7']]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["C:\\xampp\\htdocs\\cmis\\public\\img\\Care.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="426" y="0" width="79" height="62" uuid="e461e2c7-1013-46a1-83c4-f451fbdb3d99">
+					<printWhenExpression><![CDATA[$P{partner}=='2']]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["C:\\xampp\\htdocs\\cmis\\public\\img\\Cadecom.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="411" y="0" width="78" height="65" uuid="c1174e9c-6978-4bf7-823e-fd5dea8767fb">
+					<printWhenExpression><![CDATA[$P{partner}=="11"]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["C:\\xampp\\htdocs\\cmis\\public\\img\\SCI.gif"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="60">
+			<staticText>
+				<reportElement x="44" y="0" width="227" height="59" uuid="48ec49ae-275d-4563-9cae-e1d6e5ef2df4"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[indicator and disagregation]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="44" height="59" uuid="38cb67c8-fa17-4e30-9e6a-f2ee4614e0ed"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[FFP Indicator Number]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="271" y="0" width="38" height="59" uuid="cb27ea19-1e5f-47f1-9e06-a96c7442514f"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Desired Direction of Change (+ or -)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="309" y="0" width="68" height="59" uuid="9df769e4-c6d6-4238-9e0f-b681778e3e77"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[FY Achievement]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="377" y="33" width="77" height="26" uuid="425513e4-6645-4bef-a4f0-d158f3b4d1ca"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[July]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="454" y="33" width="74" height="26" uuid="ea57c561-a9aa-428f-ba45-2c7ecbd64bcf"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[August]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="528" y="33" width="70" height="26" uuid="58c10523-721f-4ad3-a1a3-d276b96f0938"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sept]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="598" y="33" width="73" height="26" uuid="488f87c6-06c7-457f-a285-962cccd1408b"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="377" y="0" width="294" height="32" uuid="393aab0f-846f-454f-99d9-7ba7a43aaa18"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="671" y="0" width="135" height="59" uuid="123e0437-ee55-4530-ab63-ed1f7d5541bb"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Comment]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="116" splitType="Stretch">
+			<subreport>
+				<reportElement isPrintRepeatedValues="false" x="0" y="0" width="200" height="90" uuid="fd458ea7-5f20-4b8c-9d58-c5e23e88cad8"/>
+				<subreportParameter name="purpose">
+					<subreportParameterExpression><![CDATA[$P{indicatorNum}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "indicator.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

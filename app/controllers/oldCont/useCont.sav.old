@@ -1,0 +1,35 @@
+if(count($dist)>0){
+			$dist_options=$dist->lists('district_name','rec_id');
+		}else{
+			$dist_options=array('Select'=>'PleaseSelect');
+		}
+
+		if(count($my_ta)>0){
+			$ta_sel=$my_ta->lists('ta_name','rec_id');
+			$ta_sel=$firstItem+$ta_sel;
+		}else{
+			$ta_sel=array('0'=>'Please Select');
+		}
+		$error=[];
+		if($this->isPostRequest()){
+			$validation=Validator::make(Input::all(),["hhid"=>"required"]);
+
+			if($validation->fails()){
+				$messages=$validation->messages();
+				return Redirect::to('beneficiary')->withErrors($validation);
+			}else{
+				$hhold=new Household;
+				$hhold->number=Input::get('hhid');
+				$hhold->HHHname=Input::get('hhhname');
+				$hhold->size=Input::get('hhsize');
+				$hhold->HHHdob=Input::get('dob');
+				$hhold->HHage=Input::get('HHage');
+				$hhold->save();
+				$message="House Hold Created Successfully !";
+				return Redirect::to('beneficiary')->with('message',$message);
+				
+			}
+
+		}
+
+		return View::make('cmis/household/index',array('dist_options'=>$dist_options,'ta_sel'=>$ta_sel))->with('dist',$dist);
