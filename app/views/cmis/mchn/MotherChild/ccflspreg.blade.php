@@ -1,30 +1,35 @@
-@extends('masterDiner')
+@extends('masterExt')
 @section('content')
 <div class="easyui-layout" fit="true">
   <div id="content" region="center">
-<table id="dgSilc" fit="true"  
-        data-options="url:'cg_reg',fitColumns:true,singleSelect:true,rownumbers:true" 
-         toolbar="#toolbar" idField="HH_Number" 
-        >
+<table id="dgCCFLS" fit="true" data-options="url:'ccfls_registration',singleSelect:true"
+         toolbar="#toolbar" idField="HH_Number" style="width:400px;height:50px">
     <thead>
         <tr>
             
             <th data-options="field:'village_name'"> Village</th>
             <th data-options="field:'HH_Number'">HH ID</th>
             
-            <th data-options="field:'Name_of_HH_Member'">Cluster Leader</th>
+            <th data-options="field:'Name_of_HH_member'">Childs Name</th>
 
-            <th data-options="field:'Sex'">Gender</th>
-            <th data-options="field:'dob'">Date of Birth</th>
-            <th data-options="field:'Age'">Age</th>
+            <th data-options="field:'dob'">Name of Pregnant Mother</th>
+            <th data-options="field:'Age'">Pregnant or Lactating</th>
 
             
-            <th data-options="field:'date_joining'">Date of Joining</th>
-            <th data-options="field:'date_leaving'" editor="{type:'datebox',
-            options:{require:true}}">Date of leaving</th>
-            
-            
-        
+            <th data-options="field:'year_delivery'">Year of delivery</th>
+
+            <th data-options="field:'Child_DOB'">Child DOB</th>
+            <th data-options="field:'Age_1stDay'">Age 1st day of CCFLS</th>
+            <th data-options="field:'d1muac'">D1 MUAC(cm)</th>
+            <th data-options="field:'d1Weight'">D1 Weight(kg)</th>
+            <th data-options="field:'d1Height'">D1 Height(cm)</th>
+
+            <th data-options="field:'d12muac'">D12 MUAC(cm)</th>
+            <th data-options="field:'d12weight'"> Weight(kg)</th>
+
+           
+
+
             <th field='action' formatter="optRowSilc">Action</th>
             
 
@@ -85,29 +90,13 @@
              valueField:'cg_number',
              textField:'group_name',
              onSelect: function(rec){
-            $('#dgSilc').datagrid('load',{
-                    editHH:$('#HH_Number').textbox('getText'),
-                    code_dist:$('#cc1').combobox('getValue'),
-                    code_ta: $('#cc2').combobox('getValue'),
-                    code_gvh:$('#cc3').combobox('getValue'),
-                    code_village:$('#cc6').combobox('getValue'),
-                    cg_number:$('#cc4').combobox('getValue')
-
-             });
+           
             $('#CG_Number').textbox('setValue',$('#cc4').combobox('getValue'));
 
             
         }" style="width:110px;">
       
-       CG Leader:
-        <input name="gvh" id="cc5" class="easyui-combobox" data-options="
-             valueField:'rec_id',
-             textField:'cgl_name',
-             onSelect: function(rec){
-           
-        }" style="width:110px;">
-        
-        
+             
         CG Promoter:
         <input name="SSFS" id="cc8" class="easyui-combobox" data-options="
              valueField:'rec_id',
@@ -118,19 +107,31 @@
            
         }" style="width:110px;">
         
-       
+        CG Leader:
+        <input name="gvh" id="cc5" class="easyui-combobox" data-options="
+             valueField:'rec_id',
+             textField:'cgl_name',
+             onSelect: function(rec){
+           
+        }" style="width:110px;">
+        
+  
+         CCFLS#
+        <input name="CG_Number" id="CCFLS_Number" class="easyui-textbox" style="width:80px;"                
+                     iconCls="icon-add" data-options="
+              onChange:function(){
+                $('#dgCCFLS').datagrid('load',{ccfls_session:$('#CCFLS_Number').textbox('getValue')});
 
+            }">       
+        
         </div>
-        
-       
-        <div>        
-        
-        Village:
+        <div> 
+         
+       Village:
         <input name="gvh_name" id="cc6" class="easyui-combobox" data-options="
              valueField:'rec_id',
              textField:'village_name'" style="width:100px;">
-        Date Joinining
-        <input name="date_registration" id="cc7" class="easyui-datebox" style="width:100px;">
+
 
         HH Number:
         <input name="HH_Number" id="HH_Number" class="easyui-textbox" style="width:80px;" iconCls="icon-add" data-options="
@@ -139,13 +140,9 @@
 
         }">
         
-        CG#
-        <input name="CG_Number" id="CG_Number" class="easyui-textbox" style="width:80px;" iconCls="icon-add" data-options="">
+       
           
-           <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="addCareGroup()">Add CGroup</a> 
-          <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="addCgL()">Add CG Leader</a> 
-        <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="addCgP()">Add CG Promoter</a> 
-    
+           <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="addCCFLSchild()">CCFLS CHILD SESIION</a>   
 
        
     </div>
@@ -157,18 +154,22 @@
     
    
 <div id="dlgEdit" class="easyui-dialog" style="width:840px;height:400px;padding:1px 32px" toolbar="#tb" closed="true" buttons="#dlgEdit-buttons" data-options="resizable:true,modal:true">
-    <div class="ftitle">CG Cluster Leader Registration</div>
+    <div class="ftitle">MCHN Pregnant Mother CCFLS Registration</div>
 
       <table id="tt" style="width:780px;height:200px" pagination="false">
               
       </table>
       <div id="tb" style="height:auto">
-        <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="insert()">New Member</a>
+           <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="insert()">New Member</a>
+           <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="followUp()">1st Month</a> 
+           <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="followUpnd()">2nd Month</a> 
+           <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="followUprd()">3rd Month</a> 
+           <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="followUpth()">6th Month</a> 
         
     </div>
     </div>
     <div id="dlgEdit-buttons">
-    <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveCGBen()" style="width:90px">Add </a>
+    <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveCCFLSBen()" style="width:90px">Add </a>
     <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlgEdit').dialog('close')" style="width:90px">Cancel</a>
 </div>
 
@@ -188,114 +189,228 @@
     <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlgEditLeader').dialog('close')" style="width:90px">Cancel</a>
 </div>
 
-<div id="dlgCareGroup" title="Care Group- Dialog" class="easyui-dialog" style="width:430px;height:240px;padding:20px 5px"
+<div id="dlgSessions" title="Add CCFLS- Dialog" class="easyui-dialog" style="width:430px;height:240px;padding:20px 5px"
         closed="true" buttons="#dlgMark-buttons">
-    <div class="ftitle">ADD CARE GROUP</div>
-    <form id="fmCareGroup" method="get" novalidate>
+    <div class="ftitle">CCFLS CHILD SESSION</div>
+    <form id="fmCCFLSession" enctype='application/json' method="get" novalidate>
 
         <div class="fitem">
-          <input name="Rec_id_dist" id="Rec_id_dist" class="easyui-textbox" required="true" readonly="true">  
+          <label>District</label>
+          <input name="District" id="Rec_id_dist" class="easyui-textbox" required="true" readonly="true">  
         </div>    
         <div class="fitem">
-            <input name="Rec_TA_id" id="Rec_TA_id" class="easyui-textbox" required="true" readonly="true">
+          <label>TA</label>
+            <input name="TA" id="Rec_TA_id" class="easyui-textbox" required="true" readonly="true">
         </div>
         <div class="fitem">
-          <input name="Rec_gvh" id="Rec_gvh" class="easyui-textbox" required="true" readonly="true">  
+          <label>GVH</label>
+          <input name="GVH" id="Rec_gvh" class="easyui-textbox" required="true" readonly="true">  
+        </div>
+        
+        <div class="fitem">
+            <label>Care Group Name</label>
+            <input name="CG_Number" id="group_name" class="easyui-textbox" required="true">            
         </div>
         <div class="fitem">
             <label>CG Promoter Number</label>
-            <input name="cg_promo_id" id="cg_promo_id" class="easyui-textbox" required="true" readonly="true">            
+            <input name="CG_Promoter" id="cg_promo_id" class="easyui-textbox" required="true" readonly="true">            
         </div>
         <div class="fitem">
-            <label>Care Group Name</label>
-            <input name="group_name" id="group_name" class="easyui-textbox" required="true">            
+            <label>Care Group Leader</label>
+            <input name="CG_Leader" id="group_leader" class="easyui-textbox" required="true">            
         </div>
         
          <div class="fitem">
-            <label>Care Group Formation</label>
-            <input name="date_format" id="date_formation" class="easyui-datebox" required="true">            
+            <label>First CCFLS Date</label>
+            <input name="first_date" id="date_formation" class="easyui-datebox" required="true">            
         </div>
         <div class="fitem">
-            <label>Care Group Registration</label>
-            <input name="date_registra" id="date_registration" class="easyui-datebox" required="true">            
+            <label>Last Date CCFLS</label>
+            <input name="last_date" id="date_registration" class="easyui-datebox" required="true">            
         </div>
 
         
     </form>
 </div>
 <div id="dlgMark-buttons">
-    <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="savePromo()" style="width:90px">Save</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveSession()" style="width:90px">Save</a>
     <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlgSilcGroup,#dlgPSPFA').dialog('close')" style="width:90px">Cancel</a>
 </div>
 
-<div id="dlgPSPFA" title="PSP/ FA - Dialog " class="easyui-dialog" style="width:430px;height:240px;padding:20px 5px"
+<div id="dlgfollowup" title="First Month Follow UP " class="easyui-dialog" style="width:430px;height:240px;padding:20px 5px"
         closed="true" buttons="#dlgVil-buttons">
-    <div class="ftitle">Add PSP /FA </div>
+    <div class="ftitle">First Month Follow Up for Pregnant Mother </div>
     <form id="fmPSPFA" method="get" novalidate>
-         <div class="fitem">
-          <input name="Rec_district" id="Rec_district" class="easyui-textbox" required="true" readonly="true">  
-        </div>    
-        <div class="fitem">
-            <input name="Rec_TA" id="Rec_TA" class="easyui-textbox" required="true" readonly="true">
+         
+       <div class="fitem">
+            <label>MUAC(cm):</label>
+            <input name="muac" id="muac" class="easyui-textbox" required="true" >
         </div>
-        <div class="fitem">
-          <input name="Rec_gvh" id="Rec_gvh" class="easyui-textbox" required="true" readonly="true">  
-        </div>
-        <div class="fitem">
-          <input name="ss_supervisor" id="ss_supervisor" class="easyui-textbox" required="true" readonly="true">  
-        </div>
-        <div class="fitem">
 
-            <label>PSP/FA Name:</label>
-            <input name="psp_name" id="psp_name" class="easyui-textbox" required="true" >
+        <div class="fitem">
+            <label>Weight(Kg):</label>
+            <input name="weight" id="weight" class="easyui-textbox" required="true" >
         </div>
         <div class="fitem">
-         <label>PSP/FA Sex(1-M 2-F):</label>
-            <input name="psp_sex" id="psp_sex" class="easyui-textbox" required="true" >
+            <label>Child delivered:</label>
+            <select name="child_delivered" option"yes">
+              <option>Yes</option>
+              <option>No</option>
+            </select>
+
         </div>
         <div class="fitem">
-                <label>Date Registration:</label>
-            <input name="date_registration" id="date_registration" class="easyui-datebox" required="true" >
+            <label>Child's Sex</label>
+            <select name="child_sex" option"yes">
+              <option>Male</option>
+              <option>Female</option>
+            </select>
+            
         </div>
-        
+        <div class="fitem">
+            <label>Child's DOB:</label>
+            <input name="dob" id="date_" class="easyui-datebox" required="true" >
+        </div>
+        <div class="fitem">
+            <label>Child's birth Weight(Kg):</label>
+            <input name="child_weight" id="child_weight" class="easyui-textbox" required="true" >
+        </div>
     </form>
 </div>
 
 <div id="dlgVil-buttons">
-    <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveSILC()" style="width:90px">Save</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveFollowUp()" style="width:90px">Save</a>
     <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlgSilcGroup,#dlgPSPFA').dialog('close')" style="width:90px">Cancel</a>
 </div>
 
 
 
-<div id="dlgPromo" title="Caregroup Promoter - Dialog " class="easyui-dialog" style="width:430px;height:240px;padding:20px 5px"
+<div id="dlgfollowupnd" title="Second Month Follow Up - Dialog " class="easyui-dialog" style="width:430px;height:240px;padding:20px 5px"
         closed="true" buttons="#dlgPromo-buttons">
-    <div class="ftitle">Add CareGroup Promoter </div>
+    <div class="ftitle">Second Month Pregnant Mother Follow Up </div>
     <form id="fmCGPromo" method="get" novalidate>
-          <div class="fitem">
-             <input name="Rec_id_dist" id="Rec_id_district" class="easyui-textbox" required="true" readonly="true">  
-        </div>    
+         
+         <div class="fitem">
+            <label>Date of Visit:</label>
+            <input name="date_visit" id="date_visit" class="easyui-datebox" required="true" >
+        </div>
+
         <div class="fitem">
-            <input name="Rec_TA_id" id="Rec_id_TA" class="easyui-textbox" required="true" readonly="true">
+            <label>Weight(Kg):</label>
+            <input name="weight" id="weight" class="easyui-textbox" required="true" >
         </div>
         <div class="fitem">
-             <label>CareGroup Promoter Name:</label>
-            <input name="Promoter_Name" id="Promoter_Name" class="easyui-textbox" required="true" >
+            <label>MUAC(cm):</label>
+            <input name="MUAC" id="MUAC" class="easyui-textbox" required="true" >
         </div>
-        <div class="fitem">
-         <label>CG Promoter Sex(1-M 2-F):</label>
-            <input name="sex" id="sex" class="easyui-textbox" required="true" >
-        </div>
-        <div class="fitem">
-                <label>Date Registration:</label>
-            <input name="date_registration" id="date_registration" class="easyui-datebox" required="true" >
-        </div>
-        
     </form>
 </div>
 
 <div id="dlgPromo-buttons">
     <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="savePromo()" style="width:90px">Save</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlgCareGroup,#dlgPromo').dialog('close')" style="width:90px">Cancel</a>
+</div>
+
+<div id="dlgfollowuprd" title="Third Month Follow Up - Dialog " class="easyui-dialog" style="width:430px;height:240px;padding:20px 5px"
+        closed="true" buttons="#dlgPromo-buttons">
+    <div class="ftitle">Third Month Pregnant Mother Follow Up </div>
+    <form id="fmCGPromo" method="get" novalidate>
+             <div class="fitem">
+            <label>Date of Visit:</label>
+            <input name="date_visit" id="visit" class="easyui-datebox" required="true" >
+        </div>
+
+        <div class="fitem">
+            <label>Weight(Kg):</label>
+            <input name="weight" id="weight" class="easyui-textbox" required="true" >
+        </div>
+        <div class="fitem">
+            <label>MUAC(cm):</label>
+            <input name="MUAC" id="MUAC" class="easyui-textbox" required="true" >
+        </div>
+    </form>
+</div>
+
+<div id="dlgPromo-buttons">
+    <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="savePromo()" style="width:90px">Save</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlgCareGroup,#dlgPromo').dialog('close')" style="width:90px">Cancel</a>
+</div>
+
+<div id="dlgfollowupth" title="Sixth Month Follow Up - Dialog " class="easyui-dialog" style="width:430px;height:240px;padding:20px 5px"
+        closed="true" buttons="#dlgPromo-buttons">
+    <div class="ftitle">Sixth Month Pregnant Mother Follow Up </div>
+    <form id="fmCGPromo" method="get" novalidate>
+             <div class="fitem">
+            <label>Date of Visit:</label>
+            <input name="date_visit" id="date_visit" class="easyui-datebox" required="true" >
+        </div>
+
+        <div class="fitem">
+            <label>Weight(Kg):</label>
+            <input name="weight" id="weight" class="easyui-textbox" required="true" >
+        </div>
+        <div class="fitem">
+            <label>MUAC(cm):</label>
+            <input name="MUAC" id="MUAC" class="easyui-textbox" required="true" >
+        </div>
+    </form>
+</div>
+
+<div id="dlgPromo-buttons">
+    <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="savePromo()" style="width:90px">Save</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlgCareGroup,#dlgPromo').dialog('close')" style="width:90px">Cancel</a>
+</div>
+
+<div id="dlgDetails" title="CCFLS Child Add Detals - Dialog " class="easyui-dialog" style="width:530px;height:340px;padding:20px 5px"
+        closed="true" buttons="#dlgDetails-buttons" data-options="resizable:true,modal:true">
+    <div class="ftitle">CCFLS Child Details  </div>
+    <form id="fmDetails" method="get" novalidate>
+        <div class="fitem">            
+            <input name="ccfls_session" id="cc11" class="easyui-textbox" required="true" >
+        </div>
+        <div class="fitem">            
+            <input name="Village" id="cc12" class="easyui-textbox" required="true" >
+        </div>
+        <div class="fitem">            
+            <input name="HH_Number" id="cc13" class="easyui-textbox" required="true" >
+        </div>
+        <div class="fitem">            
+            <input name="HH_Member_Number" id="cc14" class="easyui-textbox" required="true" >
+        </div>
+        <div class="fitem">
+            <label>No of Day in CCFLS:</label>
+            <input name="dayCCFLS" id="dayCCFLS" class="easyui-textbox" required="true" >
+        </div>
+         <div class="fitem">
+            <label>Day1 MUAC(cm):</label>
+            <input name="d1MUAC" id="d1MUAC" class="easyui-textbox" required="true" >
+        </div>
+        <div class="fitem">
+            <label>Day 1 Weight(Kg):</label>
+            <input name="d1weight" id="d1weight" class="easyui-textbox" required="true" >
+        </div>
+        <div class="fitem">
+            <label>Day 1 Height(Kg):</label>
+            <input name="d1Height" id="d1Height" class="easyui-textbox" required="true" >
+        </div>
+
+        <div class="fitem">
+            <label>Day 6 Weight(Kg):</label>
+            <input name="d6weight" id="d6weight" class="easyui-textbox" required="true" >
+        </div>
+        <div class="fitem">
+            <label>Day 12 MUAC(cm):</label>
+            <input name="d12MUAC" id="d12MUAC" class="easyui-textbox" required="true" >
+        </div>
+        <div class="fitem">
+            <label>Day 12 Weight(Kg):</label>
+            <input name="d12weight" id="d12weight" class="easyui-textbox" required="true" >
+        </div>
+    </form>
+</div>
+
+<div id="dlgDetails-buttons">
+    <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveCCFLSChild()" style="width:90px">Save</a>
     <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlgCareGroup,#dlgPromo').dialog('close')" style="width:90px">Cancel</a>
 </div>
 

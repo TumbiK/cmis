@@ -1,5 +1,7 @@
 <?php
 
+use Carbon\Carbon;
+
 class groupController extends \BaseController {
 
 	/**
@@ -355,8 +357,10 @@ public function adc_reg(){
 	public function saveAcpBeneficiary()
 	{
 		$input=Input::only('HH_Number','HH_Member_Number','village','acpc_number','Position','date_join','date_leaving');
-		$input['date_join']=date('Y-m-d', strtotime($input['date_join']));
 
+		$date= Carbon::createFromFormat('d/m/Y',$input['date_join']);
+		$input['date_join']=$date->format('Y-m-d');
+		
 		$query=DB::table('ubale_acpc_register')->insert($input);
 		if($query){
 				return json_encode(array('successMsg'=>'Successfully Added ACPC Details'));
@@ -369,9 +373,10 @@ public function adc_reg(){
 	public function saveVdcBeneficiary()
 	{
 		$input=Input::only('HH_Number','HH_Member_Number','village','vdc_number','Position','date_join','date_leaving');
-		$conDat=str_replace('/', '-', $input['date_join']);
-		$input['date_join']=date('Y-m-d', strtotime($conDat));
-
+		
+		$date= Carbon::createFromFormat('d/m/Y',$input['date_join']);
+		$input['date_join']=$date->format('Y-m-d');
+		
 		$query=DB::table('ubale_vdc_register')->insert($input);
 		if($query){
 				return json_encode(array('successMsg'=>'Successfully Added VDC Details'));
@@ -385,7 +390,10 @@ public function adc_reg(){
 	public function saveAdcBeneficiary()
 	{
 		$input=Input::only('HH_Number','HH_Member_Number','village','adc_number','Position','date_join','date_leaving');
-		$input['date_join']=date('Y-m-d', strtotime($input['date_join']));
+		
+		$date= Carbon::createFromFormat('d/m/Y',$input['date_join']);
+		$input['date_join']=$date->format('Y-m-d');
+		
 
 		$query=DB::table('ubale_adc_register')->insert($input);
 		if($query){
@@ -400,7 +408,10 @@ public function adc_reg(){
    public function saveVcpcBeneficiary()
    {
    		$input=Input::only('HH_Number','HH_Member_Number','village','vcpc_number','Position','date_join','date_leaving');
-   		$input['date_join']=date('Y-m-d', strtotime($input['date_join']));
+   		
+   		$date= Carbon::createFromFormat('d/m/Y',$input['date_join']);
+		$input['date_join']=$date->format('Y-m-d');
+		
 
 		$query=DB::table('ubale_vcpc_register')->insert($input);
 		if($query){
@@ -416,7 +427,10 @@ public function adc_reg(){
    public function saveVnrmcBeneficiary()
    {
    		$input=Input::only('HH_Number','HH_Member_Number','village','vnrmc_number','Position','date_join','date_leaving');
-   		$input['date_join']=date('Y-m-d', strtotime($input['date_join']));
+   		
+   		$date= Carbon::createFromFormat('d/m/Y',$input['date_join']);
+		$input['date_join']=$date->format('Y-m-d');
+		
 
 		$query=DB::table('ubale_vnrmc_register')->insert($input);
 		if($query){
@@ -433,8 +447,10 @@ public function adc_reg(){
    public function saveYcBeneficiary()
    {
    		$input=Input::only('HH_Number','HH_Member_Number','village','youthclub_number','Position','date_join','date_leaving');
-   		$input['date_join']=date('Y-m-d', strtotime($input['date_join']));
-
+   		
+   		$date= Carbon::createFromFormat('d/m/Y',$input['date_join']);
+		$input['date_join']=$date->format('Y-m-d');
+		
 		$query=DB::table('ubale_youthclub_register')->insert($input);
 		if($query){
 				return json_encode(array('successMsg'=>'Successfully Added Youth Club Details'));

@@ -11,7 +11,7 @@
 	
 	<script type="text/javascript" src="{{asset('jquery-easyui-1.4.1/jquery.min.js')}}"></script>
 	<script type="text/javascript" src="{{asset('customUIscript.js')}}"></script>
-
+	<script type="text/javascript" src="{{asset('mchnScript.js')}}"></script>
 
 	<script type="text/javascript" src="{{asset('bootstrap-3.3.2-dist/js/bootstrap.min.js')}}"></script>
 	<script type="text/javascript" src="{{asset('jquery-easyui-1.4.1/jquery.easyui.min.js')}}"></script>
@@ -26,7 +26,7 @@
 	<script type="text/javascript" src="{{asset('jquery.chained.remote.min.js')}}"></script>
 
 	<script type="text/javascript" src="{{asset('dinerScript.js')}}"></script>
-	<script type="text/javascript" src="http://www.jeasyui.com/easyui/datagrid-detailview.js"></script>
+	<script type="text/javascript" src="{{asset('datagrid-detailview.js')}}"></script>
 	
 	
 

@@ -23,8 +23,8 @@ $('#quarter').combobox({
 function loadPurpose(){
 	$('#purpose').combobox({
 		url:'get_purpose',
-		valueField:'rec_id',
-		textField:'pupose_name'
+    valueField:'id',
+    textField:'purpose_description'
 	});
 
 }

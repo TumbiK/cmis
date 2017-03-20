@@ -115,7 +115,7 @@ function optRow(value,row)
             <th field='gvh_name'>GVH</th>
             <th field='village_name'>Village</th>
             <th field='hh_number'>HH ID</th>
-            <th field='Name_of_HH_Member'>Name Youth Club Member</th>
+            <th field='Name_of_HH_Member'>Name ADC Member</th>
             <th  field='sex'>Sex</th>
             <th  field='dob'>Date of Birth</th>
             <th  field='Age'>Age (Years)</th>
@@ -235,7 +235,7 @@ function optRow(value,row)
 
 </div>
 <div id="dlgAdc" class="easyui-dialog" style="width:360px;height:280px;padding:1px 32px" closed="true" buttons="#dlg-buttons" data-options="resizable:true,modal:true">
-  <div class="ftitle">Add Youth Club Member Details</div>
+  <div class="ftitle">Add ADC Member Details</div>
   <form id="fmAdc" method="GET" novalidate>
     
     <div class="fitem">

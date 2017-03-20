@@ -25,7 +25,7 @@
 
 	
 	<script type="text/javascript" src="{{asset('jquery.chained.remote.min.js')}}"></script>
-
+	<script type="text/javascript" src="{{asset('datagrid-detailview.js')}}"></script>
 	
 	
 	

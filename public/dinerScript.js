@@ -19,6 +19,8 @@ $.extend($.fn.textbox.methods, {
 	}
 })
 
+
+
 function optRow(value,row)
             {
                  if (row.editing){
@@ -69,6 +71,8 @@ function cancelSilc(target){
 }
 
 //editing Marketing
+
+
 function editMarketing(target){
       var rowIndex= getRowIndex(target);
      $('#dgMarketing').datagrid('beginEdit', rowIndex);

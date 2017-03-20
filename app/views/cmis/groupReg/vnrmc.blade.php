@@ -244,7 +244,7 @@ function optRow(value,row)
     </div>
     <div class="fitem">
       <label>Date of Registration:</label>
-      <input id="date_reg" name="date_reg" class="easyui-datebox">
+      <input id="date_reg" name="date_reg" class="easyui-datebox" required="true">
     </div> 
   </form>   
   </div>

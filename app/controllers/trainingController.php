@@ -1,4 +1,5 @@
 <?php
+use Carbon\Carbon;
 
 class trainingController extends \BaseController {
 
@@ -162,7 +163,7 @@ class trainingController extends \BaseController {
 			$query=DB::table('ubale_vdc_register as vdcReg')->where('vdcReg.vdc_number','=',$input['id'])
 			->join('ubale_vdc as vdc',function($join)
 			{
-				$join->on('vdc.vdc_number','=','acpcReg.vdc_number');
+				$join->on('vdc.vdc_number','=','vdcReg.vdc_number');
 			})
 			->join('tbl_beneficiary_registration as benReg',function($join)
 			{

@@ -12,8 +12,10 @@
 
 	<script type="text/javascript" src="{{asset('jquery-easyui-1.4.1/jquery.min.js')}}"></script>
 	<script type="text/javascript" src="{{asset('jquery-easyui-1.4.1/jquery.easyui.min.js')}}"></script>
+	<script type="text/javascript" src="http://www.jeasyui.com/easyui/datagrid-detailview.js"></script>
 	<script src="{{asset('js/jquery.slides.min.js')}}"></script>
 	<script src="{{asset('js/slide.js')}}"></script>
+	<script type="text/javascript" src="{{asset('datagrid-detailview.js')}}"></script>
 </head>
 <body>
 	@include('header')

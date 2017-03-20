@@ -71,7 +71,7 @@ class UserController extends \BaseController {
       ->addRow(['Jan',   rand(1000,5000)]);
       	
 		$myQuery=DB::select(DB::raw("Select * from (select t.ta_name,ta,count(hh_number) totalHH from tbl_beneficiary_registration join code_ta t on(t.rec_id=ta) where head_h=1 and district='$adminDist' and active=1 group by ta) as Total inner join (select ta,count(hh_number) totalFemale from tbl_beneficiary_registration where head_h=1 and district='$adminDist' and sex=2 and active=1 group by ta) as TotalF on Total.ta=TotalF.ta"));
-		$mchnQuery=DB::select(DB::raw("SELECT cp.fdp_number,counT(*) totalHH FROM ubale_mchn_child_ben cp join tbl_beneficiary_registration tb on(tb.Village=cp.village and tb.HH_Number=cp.hh_number and tb.HH_Member_Number=cp.hh_member_number) WHERE tb.dob > '2015-1-1' GROUP by cp.fdp_number"));
+		$mchnQuery=DB::select(DB::raw("SELECT t.ta_name,counT(*) totalHH FROM ubale_mchn_child_ben cp join tbl_beneficiary_registration tb on(tb.Village=cp.village and tb.HH_Number=cp.hh_number and tb.HH_Member_Number=cp.hh_member_number) join code_ta t on(t.rec_id=cp.ta) WHERE tb.dob > '2015-1-1' GROUP by cp.ta"));
 		$hhTaCount->addStringColumn('TA Name')
 			->addNumberColumn('Total HH');
 
@@ -83,7 +83,7 @@ class UserController extends \BaseController {
 			$hhTaCount->addRow([$totals->ta_name,$totals->totalHH]);
 		}
 		foreach ($mchnQuery as $mcptotals) {
-			$mchnStat->addRow([$mcptotals->fdp_number,$mcptotals->totalHH]);
+			$mchnStat->addRow([$mcptotals->ta_name,$mcptotals->totalHH]);
 		}
 
 

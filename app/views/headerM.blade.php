@@ -28,6 +28,7 @@
                         <li><a href="{{URL::to('mother_childCluster')}}" >MCHN-CG Registration</a></li>     
                     <li class="dropdown-header">CCFLS</li>                  
                         <li><a href="{{URL::to('mother_childCCFLS')}}" >MCHN-CCFLS</a></li>
+                        <li><a href="{{URL::to('mother_childCCFLSpreg')}}" >CCFLS - Pregnant and Lactating</a></li>
                 </ul>
               </li>
 

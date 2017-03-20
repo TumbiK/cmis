@@ -94,6 +94,9 @@ Route::any("/codesMarket",["uses"=>"dinerController@codesMarket"]);
 //Demo Plots
 Route::any("/demoplot",["uses"=>"dinerController@demoplot"]);
 
+//farmer learning center
+
+
 
 
 
@@ -148,7 +151,14 @@ Route::any("community",["uses"=>"trainingController@community"]);
 Route::any("training_num",["uses"=>"trainingController@training_num"]);
 Route::any("rfoSel",["uses"=>"trainingController@rfoSel"]);
 
+//ccfls routes
 
+Route::any("saveCCFLSession",["uses"=>"mchnController@saveCCFLSession"]);
+Route::any("saveCCFLSChildBen",["uses"=>"mchnController@saveCCFLSChildBen"]);
+Route::any("ccfls_registration",["uses"=>"mchnController@ccfls_registration"]);
+
+Route::any("ccflsChilddetail",["uses"=>"mchnController@ccflsChilddetail"]);
+Route::any("updateCCFLS",["uses"=>"mchnController@updateCCFLS"]);
 
 
 Route::any("sector",["uses"=>"trainingController@sector"]);

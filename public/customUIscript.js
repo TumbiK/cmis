@@ -96,16 +96,16 @@ $('#dgCCFLS').datagrid({
     onExpandRow:function(index,row){
       var ddv = $(this).datagrid('getRowDetail',index).find('table.ddv');
       ddv.datagrid({
-        url:'datagrid22_getdetail.php?itemid='+row.itemid,
+        url:'ccflsChilddetail?hhid='+row.HH_Number+'&HH_Member_Number='+row.HH_Member_Number+'&Village='+row.Village+'&ccfls='+row.ccfls_session,
             fitColumns:true,
             singleSelect:true,
             rownumbers:true,
             loadMsg:'',
             height:'auto',
             columns:[[
-                {field:'fmDateVisit',title:'1M Date Visit',width:100},
-                {field:'fmMuac',title:'1M MUAC(cm)',width:100},
-                {field:'unitprice',title:'1M Weight(kg)',width:100},
+                {field:'f1date',title:'1M Date Visit',width:100},
+                {field:'f1MUAC',title:'1M MUAC(cm)',width:100},
+                {field:'f1weight',title:'1M Weight(kg)',width:100},
                 {field:'fmDateVisit',title:'2M Date Visit',width:100},
                 {field:'fmMuac',title:'2M MUAC(cm)',width:100},
                 {field:'unitprice',title:'2M Weight(kg)',width:100},
@@ -404,7 +404,7 @@ $('#dgCCFLS').datagrid({
 	$('#vilSel').on('change',function(){
 	//	alert(this.value);
 
-	 var statusid=  [{statid: '1', status: 'Deceased'},{statid: '2', status: 'Moved Out'}];
+	 var statusid=  [{statid: '0', status: 'Available'},{statid: '1', status: 'Deceased'},{statid: '2', status: 'Moved Out'}];
 	 var sexCom=[{sexid:'1',sex:'Male'},{sexid:'2',sex:'Female'}];
 
 $('#tt').datagrid({

@@ -472,7 +472,7 @@ $('#adctt').datagrid({
             {field:'action',title:'Action',width:50,align:'center', 
                 formatter:function(value,row,index){
                     if (row.editing){
-                        var s = '<a href="#" onclick="saveAdc(this)">Save</a> ';
+                        var s = '<a href="#" onclick="saveGroup(this)">Save</a> ';
                         var c = '<a href="#" onclick="cancelAdc(this)">Cancel</a>';
                         return s+c;
                     } else {
@@ -774,22 +774,22 @@ $('#vnrmctt').datagrid({
 
 
 function insert(){
-            var row = $('#acpctt,#vdctt,#vcpctt,#vnrmctt,#yctt').datagrid('getSelected');
+            var row = $('#acpctt,#vdctt,#vcpctt,#vnrmctt,#yctt,#adctt').datagrid('getSelected');
             //get the total number of Row in T=tt datagrid
-            var lastRow=($('#acpctt,#vdctt,#vcpctt,#vnrmctt,#yctt').datagrid('getData').total);
+            var lastRow=($('#acpctt,#vdctt,#vcpctt,#vnrmctt,#yctt,#adctt').datagrid('getData').total);
 
 
             if (row){
-                var index = $('#acpctt,#vdctt,#vcpctt,#vnrmctt,#yctt').datagrid('getRowIndex', row);
+                var index = $('#acpctt,#vdctt,#vcpctt,#vnrmctt,#yctt,#adctt').datagrid('getRowIndex', row);
             } else {
                 index = 0;
             }
            
             
-            $('#acpctt,#vdctt,#vcpctt,#vnrmctt,#yctt').datagrid('selectRow',0);
+            $('#acpctt,#vdctt,#vcpctt,#vnrmctt,#yctt,#adctt').datagrid('selectRow',0);
 
-             var myRow=$('#acpctt,#vdctt,#vcpctt,#vnrmctt,#yctt').datagrid('getSelected');
-            $('#acpctt,#vdctt,#vcpctt,#vnrmctt,#yctt').datagrid('insertRow', {
+             var myRow=$('#acpctt,#vdctt,#vcpctt,#vnrmctt,#yctt,#adctt').datagrid('getSelected');
+            $('#acpctt,#vdctt,#vcpctt,#vnrmctt,#yctt,#adctt').datagrid('insertRow', {
                 index: index,
                 row:{
                     status:'',
@@ -804,20 +804,20 @@ function insert(){
                 }
             });
             //var selRows=$('#tt').datagrid('selectRow',lastRow+1);
-            $('#acpctt,#vdctt,#vcpctt,#yctt').datagrid('selectRow',index);
-            $('#acpctt,#vdctt,#vcpctt,#yctt').datagrid('beginEdit',index);
+            $('#acpctt,#vdctt,#vcpctt,#yctt,#adctt').datagrid('selectRow',index);
+            $('#acpctt,#vdctt,#vcpctt,#yctt,#adctt').datagrid('beginEdit',index);
         }
 function editMember(target){
       var rowIndex= getRowIndex(target);
-     $('#acpctt,#vdctt,#vcpctt,#vnrmctt,#yctt').datagrid('beginEdit', rowIndex);
+     $('#acpctt,#vdctt,#vcpctt,#vnrmctt,#yctt,#adctt').datagrid('beginEdit', rowIndex);
 }
 function cancel(target){
-    $('#acpctt,#vdctt,#vcpctt,#vnrmctt,#yctt').datagrid('cancelEdit', getRowIndex(target));
+    $('#acpctt,#vdctt,#vcpctt,#vnrmctt,#yctt,#adctt').datagrid('cancelEdit', getRowIndex(target));
 }
 
 function saveGroup(target){
-    $('#acpctt,#vdctt,#vcpctt,#vnrmctt,#yctt').datagrid('endEdit', getRowIndex(target));
-    var rows=$('#acpctt,#vdctt,#vcpctt,#vnrmctt,#yctt').datagrid('getRows');
+    $('#acpctt,#vdctt,#vcpctt,#vnrmctt,#yctt,#adctt').datagrid('endEdit', getRowIndex(target));
+    var rows=$('#acpctt,#vdctt,#vcpctt,#vnrmctt,#yctt,#adctt').datagrid('getRows');
 
 
     $.each(rows,function(i,row){
@@ -1204,7 +1204,7 @@ function saveAcpc(){
                     title: 'Error',
                     msg: result.errorMsg
                 });
-                $('#dg,#dlgYc,#dlgAdc,#dlgAcpc').datagrid('reload');    // reload the user data
+                $('#dg,#dlgYc,#dlgAdc,#dlgAcpc,#dgVnrmc').datagrid('reload');    // reload the user data
                 $('#fm,#fmYc,#fmAdc,#dlgAcpc').form('clear');
                 if  (url=='save_youthclub'){
                     var url3='youthclubSel?id='+$('#cc3').combobox('getValue');
@@ -1213,12 +1213,15 @@ function saveAcpc(){
                 else if (url=='save_vdc'){
                     var url3='vdcSel?id='+$('#cc3').combobox('getValue');
                 }
+                else if (url=='save_vnrmc'){
+                    var url3='vdcSel?id='+$('#cc3').combobox('getValue');   
+                }
                 
                  
             
             $('#cc6').combobox('reload', url3);
             } else{
-               // $('#dlg').dialog('close');        // close the dialog
+              $('#dlgVnrmc').dialog('close');        // close the dialog
                 
            
                 

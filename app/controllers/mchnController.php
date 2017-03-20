@@ -373,6 +373,41 @@ if (count($chkMain)<1){
 	
 }
 
+	public function ccflsChilddetail(){
+		$input=Input::all();
+		$query=DB::table('ubale_ccfls_child')
+		->where('village','=',$input['Village'])
+		->where('HH_Number','=',$input['hhid'])
+		->where('HH_Member_Number','=',$input['HH_Member_Number'])
+		->where('ccfls_session','=',$input['ccfls'])
+		->get();
+
+		return json_encode($query);
+
+
+	}
+
+	public function updateCCFLS(){
+		$input=Input::all();
+
+		$date= Carbon::createFromFormat('d/m/Y',$input['f1date']);
+		$input['f1date']=$date->format('Y-m-d');
+		if($input['follow']==1){
+		$query=DB::table('ubale_ccfls_child')
+		->where('village','=',$input['Village'])
+		->where('HH_Number','=',$input['HH_Number'])
+		->where('HH_Member_Number','=',$input['HH_Member_Number'])
+		->where('ccfls_session','=',$input['ccfls_session'])
+		->update(array('f1date'=>$input['f1date'],'f1weight'=>$input['f1weight'],'f1MUAC'=>$input['f1MUAC']));
+
+		if($query){
+			return json_encode(array('successMsg'=>'Successfully Update First Month Follow Up Details'));
+		}else{
+			return json_encode(array('errorMsg'=>'Failed to Update First Month Follow Up Details'));
+		}
+	  }
+	}
+
 	public function saveChildBeneficiary(){
 		$input=Input::only('District','TA','GVH','Village','HH_Number','caregiver','mc','HH_Member_Number','FDP_Number','level','date_registration','caregroup');
 		$dob=input::get('dob');
@@ -976,6 +1011,47 @@ if (count($chkMain)<1){
 
 	}
 
+	public function saveCCFLSession(){
+		$input=Input::all();
+
+		//convert the dates to mysql format
+		
+		$date= Carbon::createFromFormat('d/m/Y',$input['first_date']);
+		$date2=Carbon::createFromFormat("d/m/Y",$input['last_date']);
+		$input['first_date']=$date->format('Y-m-d');
+		$input['last_date']=$date2->format('Y-m-d');
+
+		$query=DB::table('ubale_ccflsessions')->insert($input);
+
+		$myquery=DB::table('ubale_ccflsessions')->orderby('ccfls_number','desc')->limit(1)->first();
+		
+		return json_encode($myquery);
+	}
+
+	public function ccfls_registration()
+	{
+		$input=Input::all();
+		$query=DB::table('ubale_ccfls_child as cc')
+		->join('tbl_beneficiary_registration as ben_reg',function($join)
+			{
+				$join->on('cc.Village','=','ben_reg.Village');
+				$join->on('cc.HH_Number','=','ben_reg.HH_Number');
+				$join->on('cc.HH_Member_Number','=','ben_reg.HH_Member_Number');
+			})->where('ccfls_session','=',$input['ccfls_session'])->get();
+		return json_encode($query);
+
+	}
+	public function saveCCFLSChildBen()
+	{
+		$input=Input::all();
+		$query=DB::table('ubale_ccfls_child')->insert($input);
+		if($query){
+				return json_encode(array('successMsg'=>'Successfully Added CCFLS Child'));
+			}
+			else{
+				return json_encode(array('errorMsg'=>'Some Error Occured'));
+			}
+	}
 
 
 	public function mother_childCluster(){

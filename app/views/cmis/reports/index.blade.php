@@ -23,7 +23,7 @@
                                         onSelect:function(rec){
                                             loadQuarter();
                                             loadPurpose();
-                                        },url:'get_fy',valueField:'year',textField:'description'">
+                                        },url:'get_fy',valueField:'year',textField:'year'">
                                  </div>   
                                  <div class="fitem">
                                          <label>Quarter</label>
@@ -32,10 +32,10 @@
                                 
                                 <div class="fitem">                                        
                                         <label >Purpose</label>
-                                        <input name="purpose" id="purpose" class="easyui-combobox" style="width:160px;" data-options="
+                                        <input name="purpose" id="purpose" class="form-control  easyui-combobox" style="width:160px;" data-options="
                                         onSelect:function(rec){
                                             load_ind();
-                                            },valueField:'id',textField:'purpose'">
+                                            },valueField:'id',textField:'purpose_description'">
                                 </div>
                             </form>                           
                                 

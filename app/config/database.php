@@ -55,7 +55,7 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'cmis2ns',
+			'database'  => 'cmis2bt',
 			'username'  => 'root',
 			'password'  => '',
 			'charset'   => 'utf8',

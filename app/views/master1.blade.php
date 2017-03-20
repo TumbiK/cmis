@@ -8,6 +8,7 @@
 	<link rel="stylesheet" type="text/css" href="{{asset('light-bootstrap-dashboard.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('pe-icon-7-stroke.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('animate.min.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{asset('styledash.css')}}">
 	
 	
 	<link rel="stylesheet" type="text/css" href="{{asset('jquery-easyui-1.4.1/themes/icon.css')}}">
@@ -29,6 +30,7 @@
 
 
 	<script type="text/javascript" src="{{asset('jquery.chained.remote.min.js')}}"></script>
+	<script type="text/javascript" src="{{asset('datagrid-detailview.js')}}"></script>
 
 </head>
 <body>

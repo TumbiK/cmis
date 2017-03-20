@@ -76,7 +76,7 @@
              valueField:'rec_id',
              textField:'institution_name',
              onSelect: function(rec){
-                   $('#ttPmu').datagrid('load',{'id':$('#institution').combobox('getValue')});
+                   $('#dgCCFLS').datagrid('load',{'id':$('#institution').combobox('getValue')});
               }
 
              " style="width:200px;">
