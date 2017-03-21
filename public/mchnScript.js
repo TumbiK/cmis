@@ -159,6 +159,16 @@ function saveFollowUp()
 		row["f2date"]=$('#f2date').datebox('getValue');
 		row["f2weight"]=$('#f2weight').textbox('getValue');
 		row["f2MUAC"]=$('#f2MUAC').textbox('getValue');
+	}else if(row['follow']==3){
+		row["f3date"]=$('#f3date').datebox('getValue');
+		row["f3weight"]=$('#f3weight').textbox('getValue');
+		row["f3MUAC"]=$('#f3MUAC').textbox('getValue');
+		row["f3height"]=$('#f3height').textbox('getValue');
+	}else if(row['follow']==6){
+		row["f6date"]=$('#f6date').datebox('getValue');
+		row["f6weight"]=$('#f6weight').textbox('getValue');
+		row["f6MUAC"]=$('#f6MUAC').textbox('getValue');
+		row["f6height"]=$('#f6height').textbox('getValue');
 	}
        
         
@@ -193,7 +203,7 @@ function saveFollowUp()
 
 function followUpnd()
 {
-	alert("Second Month Follow up");
+	
 	var row=$('#tt').datagrid('getSelected');
 	$('#dlgEdit').dialog('close');
 	$('#dlgfollowupnd').dialog('open');
@@ -203,78 +213,31 @@ function followUpnd()
         
 }
 
-function saveFollowUpNd()
-{
 
-	var url="updateCCFLSnd";
 
-	var row=$('#tt').datagrid('getSelected');
-		if(row){
-        $.ajax({
-                type:'get',
-                url:url,
-                data:row,
-                success:function(result){
-                    var result = eval('('+result+')');
-                    if (result.errorMsg){
-                                 $.messager.show({
-                                 title: 'Error',
-                                 msg: result.errorMsg
-                              });
-                     } 
-                     if(result.successMsg){
-                            $.messager.show({
-                            title: 'success',
-                            msg: result.successMsg
-                             });
-                             $('#dlgEdit').dialog('close');
-                             $('#dgDiner').datagrid('reload');
-                }
-            }
-    });
-}
-}
 
 function followUprd()
 {
-	alert("Third Month Follow up");
+	
 	var row=$('#tt').datagrid('getSelected');
 	$('#dlgEdit').dialog('close');
 	$('#dlgfollowuprd').dialog('open');
 	    row["caregroup"]=$('#cc4').combobox('getValue');
         row["cgleader"]=$('#cc5').combobox('getValue');
-        row["follow"]=1;
-        row["date_registration"]=$('#cc7').datebox('getValue');
+        row["follow"]=3;
+        
 }
 
-function saveFollowUprd()
+function followUpth()
 {
-
-	var url="updateCCFLSrd";
-
+	
 	var row=$('#tt').datagrid('getSelected');
-		if(row){
-        $.ajax({
-                type:'get',
-                url:url,
-                data:row,
-                success:function(result){
-                    var result = eval('('+result+')');
-                    if (result.errorMsg){
-                                 $.messager.show({
-                                 title: 'Error',
-                                 msg: result.errorMsg
-                              });
-                     } 
-                     if(result.successMsg){
-                            $.messager.show({
-                            title: 'success',
-                            msg: result.successMsg
-                             });
-                             $('#dlgEdit').dialog('close');
-                             $('#dgDiner').datagrid('reload');
-                }
-            }
-    });
+	$('#dlgEdit').dialog('close');
+	$('#dlgfollowupth').dialog('open');
+	    row["caregroup"]=$('#cc4').combobox('getValue');
+        row["cgleader"]=$('#cc5').combobox('getValue');
+        row["follow"]=6;
+        
 }
-}
+
+

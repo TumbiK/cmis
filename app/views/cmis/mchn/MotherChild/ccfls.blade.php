@@ -290,32 +290,36 @@
 </div>
 
 <div id="dlgPromo-buttons">
-    <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="savefollowup()" style="width:90px">Save</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveFollowUp()" style="width:90px">Save</a>
     <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlgCareGroup,#dlgPromo').dialog('close')" style="width:90px">Cancel</a>
 </div>
 
-<div id="dlgfollowuprd" title="Third Month Follow Up - Dialog " class="easyui-dialog" style="width:430px;height:240px;padding:20px 5px"
+<div id="dlgfollowuprd" title="Third Month Follow Up - Dialog " class="easyui-dialog" style="width:530px;height:340px;padding:20px 5px"
         closed="true" buttons="#dlgPromo-buttons">
     <div class="ftitle">Third Month Follow Up </div>
     <form id="fmCGPromo" method="get" novalidate>
              <div class="fitem">
             <label>Date of Visit:</label>
-            <input name="date_visit" id="visit" class="easyui-datebox" required="true" >
+            <input name="f3date" id="f3date" class="easyui-datebox" required="true" >
         </div>
 
         <div class="fitem">
             <label>Weight(Kg):</label>
-            <input name="weight" id="weight" class="easyui-textbox" required="true" >
+            <input name="f3weight" id="f3weight" class="easyui-textbox" required="true" >
         </div>
         <div class="fitem">
             <label>MUAC(cm):</label>
-            <input name="MUAC" id="MUAC" class="easyui-textbox" required="true" >
+            <input name="f3MUAC" id="f3MUAC" class="easyui-textbox" required="true" >
+        </div>
+        <div class="fitem">
+            <label>Height(cm):</label>
+            <input name="f3height" id="f3height" class="easyui-textbox" required="true" >
         </div>
     </form>
 </div>
 
 <div id="dlgPromo-buttons">
-    <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="savePromo()" style="width:90px">Save</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveFollowUp()" style="width:90px">Save</a>
     <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlgCareGroup,#dlgPromo').dialog('close')" style="width:90px">Cancel</a>
 </div>
 
@@ -325,22 +329,26 @@
     <form id="fmCGPromo" method="get" novalidate>
              <div class="fitem">
             <label>Date of Visit:</label>
-            <input name="date_visit" id="date_visit" class="easyui-datebox" required="true" >
+            <input name="f6date" id="f6date" class="easyui-datebox" required="true" >
         </div>
 
         <div class="fitem">
             <label>Weight(Kg):</label>
-            <input name="weight" id="weight" class="easyui-textbox" required="true" >
+            <input name="f6weight" id="f6weight" class="easyui-textbox" required="true" >
         </div>
         <div class="fitem">
             <label>MUAC(cm):</label>
-            <input name="MUAC" id="MUAC" class="easyui-textbox" required="true" >
+            <input name="f6MUAC" id="f6MUAC" class="easyui-textbox" required="true" >
+        </div>
+        <div class="fitem">
+            <label>Height(cm):</label>
+            <input name="f6height" id="f6height" class="easyui-textbox" required="true" >
         </div>
     </form>
 </div>
 
 <div id="dlgPromo-buttons">
-    <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="savePromo()" style="width:90px">Save</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveFollowUp()" style="width:90px">Save</a>
     <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlgCareGroup,#dlgPromo').dialog('close')" style="width:90px">Cancel</a>
 </div>
 

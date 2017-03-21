@@ -390,9 +390,10 @@ if (count($chkMain)<1){
 	public function updateCCFLS(){
 		$input=Input::all();
 
+
+		if($input['follow']==1){
 		$date= Carbon::createFromFormat('d/m/Y',$input['f1date']);
 		$input['f1date']=$date->format('Y-m-d');
-		if($input['follow']==1){
 		$query=DB::table('ubale_ccfls_child')
 		->where('village','=',$input['Village'])
 		->where('HH_Number','=',$input['HH_Number'])
@@ -404,6 +405,54 @@ if (count($chkMain)<1){
 			return json_encode(array('successMsg'=>'Successfully Update First Month Follow Up Details'));
 		}else{
 			return json_encode(array('errorMsg'=>'Failed to Update First Month Follow Up Details'));
+		}
+	  }elseif($input['follow']==2)
+	  {
+	  	$date= Carbon::createFromFormat('d/m/Y',$input['f2date']);
+		$input['f2date']=$date->format('Y-m-d');
+		$query=DB::table('ubale_ccfls_child')
+		->where('village','=',$input['Village'])
+		->where('HH_Number','=',$input['HH_Number'])
+		->where('HH_Member_Number','=',$input['HH_Member_Number'])
+		->where('ccfls_session','=',$input['ccfls_session'])
+		->update(array('f2date'=>$input['f2date'],'f2weight'=>$input['f2weight'],'f2MUAC'=>$input['f2MUAC']));
+
+		if($query){
+			return json_encode(array('successMsg'=>'Successfully Update Second Month Follow Up Details'));
+		}else{
+			return json_encode(array('errorMsg'=>'Failed to Update Second Month Follow Up Details'));
+		}
+	  }elseif($input['follow']==3)
+	  {
+	  	$date= Carbon::createFromFormat('d/m/Y',$input['f3date']);
+		$input['f3date']=$date->format('Y-m-d');
+		$query=DB::table('ubale_ccfls_child')
+		->where('village','=',$input['Village'])
+		->where('HH_Number','=',$input['HH_Number'])
+		->where('HH_Member_Number','=',$input['HH_Member_Number'])
+		->where('ccfls_session','=',$input['ccfls_session'])
+		->update(array('f3date'=>$input['f3date'],'f3weight'=>$input['f3weight'],'f3MUAC'=>$input['f3MUAC'],'f3height'=>$input['f3height']));
+
+		if($query){
+			return json_encode(array('successMsg'=>'Successfully Update Third Month Follow Up Details'));
+		}else{
+			return json_encode(array('errorMsg'=>'Failed to Update Third Month Follow Up Details'));
+		}
+	  }elseif($input['follow']==6)
+	  {
+	  	$date= Carbon::createFromFormat('d/m/Y',$input['f6date']);
+		$input['f6date']=$date->format('Y-m-d');
+		$query=DB::table('ubale_ccfls_child')
+		->where('village','=',$input['Village'])
+		->where('HH_Number','=',$input['HH_Number'])
+		->where('HH_Member_Number','=',$input['HH_Member_Number'])
+		->where('ccfls_session','=',$input['ccfls_session'])
+		->update(array('f6date'=>$input['f6date'],'f6weight'=>$input['f6weight'],'f6MUAC'=>$input['f6MUAC'],'f6height'=>$input['f6height']));
+
+		if($query){
+			return json_encode(array('successMsg'=>'Successfully Update Sixth Month Follow Up Details'));
+		}else{
+			return json_encode(array('errorMsg'=>'Failed to Update Sixth Month Follow Up Details'));
 		}
 	  }
 	}
